@@ -95,3 +95,6 @@ Temporary Items
 Library
 Temp
 >>>>>>> origin/master
+*.csproj
+*.sln
+*.userprefs
