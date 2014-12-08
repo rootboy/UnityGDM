@@ -92,9 +92,10 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+>>>>>>> origin/master
 Library
 Temp
->>>>>>> origin/master
 *.csproj
 *.sln
 *.userprefs
