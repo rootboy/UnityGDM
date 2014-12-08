@@ -20,8 +20,8 @@ namespace GDM
 						instance  = (T)Object.FindObjectOfType(typeof(T));
 						if(instance == null)
 						{
-							Debug.LogError("An instance of " + typeof(T) + 
-							               " is needed in the scene, but there is none.");
+							GameObject go = new GameObject();
+							instance = go.AddComponent<T>();
 						}
 					}
 					return instance;
