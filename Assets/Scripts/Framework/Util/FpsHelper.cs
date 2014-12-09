@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace SmartWar
+namespace GDM
 {
     namespace Util
     {
