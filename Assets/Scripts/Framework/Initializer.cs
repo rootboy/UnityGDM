@@ -8,10 +8,9 @@ namespace GDM
 	{
 		public class Initializer  : MonoBehaviour
 		{
-			void Awake()
+			void Start()
 			{
-				DLC dlc = new DLC();
-
+				Debug.Log("1111");
 			}
 
 			

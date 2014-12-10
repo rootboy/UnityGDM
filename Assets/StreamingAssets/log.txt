@@ -1,0 +1,13 @@
+12/10/2014 10:31:10 AM
+output: 1111
+stack: UnityEngine.Debug:Log(Object)
+GDM.Global.Initializer:Start() (at Assets/Scripts/Framework/Initializer.cs:13)
+
+logType: Log
+deviceModel: Intel(R) Core(TM) i5-3470 CPU @ 3.20GHz (16312 MB)
+deviceName: T4F-PC-14332
+graphicsDeviceVendor: NVIDIA
+graphicsDeviceName: NVIDIA GeForce GTX 750
+systemMemorySize: 16312
+graphicsMemorySize: 953
+

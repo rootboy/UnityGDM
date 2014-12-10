@@ -3,9 +3,9 @@ using System.Collections;
 
 namespace GDM
 {
-    namespace Util
+    namespace Tools
     {
-        public class FpsHelper : MonoBehaviour
+        public class FPS : MonoBehaviour
         {
 
             private float mLastTime = 0f;

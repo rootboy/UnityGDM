@@ -9,6 +9,7 @@ namespace GDM
         public class UIManager : Singleton<UIManager>
         {
 			protected Dictionary<string, GameObject> dicUis = new Dictionary<string, GameObject>();
+			protected Stack<string> stackUis = new Stack<string>();
 
 
 			public bool Show(string name)
@@ -21,6 +22,7 @@ namespace GDM
 				return false;
 			}
 
+
 			public bool Hide(string name)
 			{
 				if(dicUis.ContainsKey(name))
@@ -30,8 +32,6 @@ namespace GDM
 				}
 				return false;
 			}
-
-
         }
     } 
 } 
