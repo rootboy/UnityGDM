@@ -67,7 +67,6 @@ namespace GDM
 				}
 			}
 		}
-	}
-
 #endif
+	}
 }
