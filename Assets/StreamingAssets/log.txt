@@ -1,34 +1,13 @@
-deviceModel: Intel(R) Core(TM) i5-2415M CPU @ 2.30GHz (8103 MB)
-deviceName: ROOTBOY-PC
-graphicsDeviceVendor: Intel
-graphicsDeviceName: Intel(R) HD Graphics 3000
-systemMemorySize: 8103
-graphicsMemorySize: 128
-12/10/2014 3:18:44 PM
-logType: Log
-output: 1111
-stack: UnityEngine.Debug:Log(Object)
-GDM.Global.Initializer:Start() (at Assets/Scripts/Framework/Initializer.cs:13)
+deviceModel: Intel(R) Core(TM) i5-3470 CPU @ 3.20GHz (16312 MB)
+deviceName: T4F-PC-14332
+graphicsDeviceVendor: NVIDIA
+graphicsDeviceName: NVIDIA GeForce GTX 750
+systemMemorySize: 16312
+graphicsMemorySize: 953
+operatingSystem: Windows 7 Service Pack 1 (6.1.7601) 64bit
 
-12/10/2014 3:18:47 PM
-logType: Log
-output: 1111
-stack: UnityEngine.Debug:Log(Object)
-GDM.Global.Initializer:Start() (at Assets/Scripts/Framework/Initializer.cs:13)
 
-12/10/2014 3:18:49 PM
-logType: Log
-output: 1111
-stack: UnityEngine.Debug:Log(Object)
-GDM.Global.Initializer:Start() (at Assets/Scripts/Framework/Initializer.cs:13)
-
-12/10/2014 3:18:52 PM
-logType: Log
-output: 1111
-stack: UnityEngine.Debug:Log(Object)
-GDM.Global.Initializer:Start() (at Assets/Scripts/Framework/Initializer.cs:13)
-
-12/10/2014 3:18:55 PM
+12/11/2014 1:30:28 AM
 logType: Log
 output: 1111
 stack: UnityEngine.Debug:Log(Object)

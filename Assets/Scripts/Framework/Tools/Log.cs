@@ -7,6 +7,8 @@ namespace GDM
 {
 	namespace Tools
 	{
+#if !UNITY_EDITOR
+
 		/// <summary>
 		/// Collect log.
 		/// </summary>
@@ -18,7 +20,6 @@ namespace GDM
 
 			StreamWriter sw;
 			string path = "";
-
 
 			void Awake()
 			{
@@ -33,6 +34,7 @@ namespace GDM
 					sw.WriteLine(string.Format("graphicsDeviceName: {0}", SystemInfo.graphicsDeviceName));
 					sw.WriteLine(string.Format("systemMemorySize: {0}", SystemInfo.systemMemorySize));
 					sw.WriteLine(string.Format("graphicsMemorySize: {0}", SystemInfo.graphicsMemorySize));
+					sw.WriteLine(string.Format("operatingSystem: {0}", SystemInfo.operatingSystem));
 					sw.WriteLine();
 					sw.WriteLine();
 				}
@@ -66,4 +68,6 @@ namespace GDM
 			}
 		}
 	}
+
+#endif
 }
