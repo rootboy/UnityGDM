@@ -9,7 +9,7 @@ namespace GDM
 	{
 		public abstract class UIBase : MonoBehaviour 
 		{
-			protected Dictionary<string, GameObject> dicBtns = new Dictionary<string, GameObject>();
+			protected Dictionary<string, BoxCollider> dicBtns = new Dictionary<string, BoxCollider>();
 			protected Dictionary<string, UILabel> dicLabels = new Dictionary<string, UILabel>();
 			protected Dictionary<string, UISprite> dicSprite = new Dictionary<string, UISprite>();
 
@@ -17,26 +17,41 @@ namespace GDM
 			protected string labelFilter = "Label_";
 			protected string spriteFilter = "Sprite_";
 
-			protected virtual void Awake(){
-				FindReference();
+			protected virtual void Awake()
+			{
+				GetAllReference();
 			}
 
-
-			protected virtual void Start(){
-
+			public virtual void OnVisible(object param)
+			{
+				
+			}
+			
+			public virtual void OnInvisible(object param) 
+			{
+				
 			}
 
-
-			void FindReference(){
-
+			protected void GetAllReference()
+			{
+				GetReference<BoxCollider>(buttonFilter, dicBtns);
+				GetReference<UILabel>(labelFilter, dicLabels);
+				GetReference<UISprite>(spriteFilter, dicSprite);
 			}
 
-
-
-			protected virtual void OnClick(GameObject go){}
-			protected virtual void OnVisible(object param){}
-			protected virtual void OnInvisible(object param) {}
-
+			protected void GetReference<T>(string filter, IDictionary dic) where T : Component
+			{
+				T[] array = GetComponentsInChildren<T>(true);
+				foreach(T item in array){
+					if(item.name.Contains(filter)){
+						if(dic.Contains(item.name)){
+							Debug.LogError("");
+							continue;
+						}
+						dic.Add(item.name, item);
+					}
+				}
+			}
 
 		}
 	}

@@ -12,28 +12,50 @@ namespace GDM
 			protected Stack<string> stackUis = new Stack<string>();
 
 
-
-
-			public bool Show(string name)
+			public bool Show(string name, object param)
 			{
-				if(dicUis.ContainsKey(name))
-				{
-					dicUis[name].SetActive(true);
+				if(dicUis.ContainsKey(name)){
+					GameObject go = dicUis[name];
+					if(go != null){
+						go.SetActive(true);
+						UIBase ui = go.GetComponent<UIBase>();
+						if(ui != null){
+							ui.OnVisible(param);
+						}
+					}
 					return true;
 				}
 				return false;
 			}
 
 
-			public bool Hide(string name)
+			public bool Hide(string name, object param)
 			{
-				if(dicUis.ContainsKey(name))
-				{
-					dicUis[name].SetActive(false);
-					return true;
+				if(dicUis.ContainsKey(name)){
+					GameObject go = dicUis[name];
+					if(go != null){
+						go.SetActive(false);
+						UIBase ui = go.GetComponent<UIBase>();
+						if(ui != null){
+							ui.OnInvisible(param);
+						}
+					}
 				}
 				return false;
 			}
+
+
+			public void Next()
+			{
+
+			}
+
+
+			public void Previous()
+			{
+
+			}
+
         }
     } 
 } 
