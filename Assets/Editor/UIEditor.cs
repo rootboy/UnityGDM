@@ -40,7 +40,7 @@ public sealed class UIEditor : EditorWindow
         1,
     };
 
-    [MenuItem("Development/UI Editor")]
+    [MenuItem("Development/Editor/UI Editor")]
     static void Init()
     {
         UIEditor editor = (UIEditor)EditorWindow.GetWindow(typeof(UIEditor), true, "UI Editor", true);
