@@ -5,24 +5,10 @@ using System.Collections.Generic;
 using System.Xml;
 
 /// <summary>
-/// Functions:
-/// 1、Rename childs
-/// 2、Generate config file 
+/// Helper class for operate ui.
 /// </summary>
 public sealed class UIEditor : EditorWindow
 {
-    class TransformInfo
-    {
-        public Transform trans;
-        public string name;
-        public TransformInfo(Transform t, string n)
-        {
-            trans = t;
-            name = n;
-        }
-    }
-
-
     private string xmlPath = "";
     private List<GameObject> list = new List<GameObject>();
     private XmlDocument xmlDoc = new XmlDocument();
@@ -40,7 +26,7 @@ public sealed class UIEditor : EditorWindow
         1,
     };
 
-    [MenuItem("Development/Editor/UI Editor")]
+    [MenuItem("Development/UI Editor")]
     static void Init()
     {
         UIEditor editor = (UIEditor)EditorWindow.GetWindow(typeof(UIEditor), true, "UI Editor", true);
@@ -63,24 +49,40 @@ public sealed class UIEditor : EditorWindow
         }
     }
 
-    void BatchingRename()
+    #region Batching Rename
+
+    private void BatchingRename()
     {
         GUILayout.Label("-------------------------------------" + funcDisplayedOptions[function] + "-------------------------------------");
+
+        GUILayout.Space(5);
+        if (GUILayout.Button("Rename", GUILayout.Width(60))){
+            Rename(Selection.activeGameObject.transform);
+        }
     }
 
-    void Rename(Transform parent)
+    private void Rename(Transform parent)
     {
+        if (parent == null) return;
         List<Transform> childList = new List<Transform>();
         for (int i = 0; i < parent.childCount; i++)
         {
             childList.Add(parent.GetChild(i));
+            childList.Sort(CompareByName);
+            
         }
     }
 
-   
+    private int CompareByName(Transform t1, Transform t2)
+    {
+        return t1.name.CompareTo(t2.name);
+    }
+    #endregion
 
 
-    void GenerateConfig()
+    #region Generate Config
+
+    private void GenerateConfig()
     {
         GUILayout.Label("-------------------------------------" + funcDisplayedOptions[function] + "-------------------------------------");
         GUILayout.Label("File Path: " + xmlPath);
@@ -99,7 +101,7 @@ public sealed class UIEditor : EditorWindow
         GUILayout.Label(console);
     }
 
-    void Export()
+    private void Export()
     {
         if (string.IsNullOrEmpty(xmlPath)){
             consoleColor = Color.red;
@@ -116,13 +118,11 @@ public sealed class UIEditor : EditorWindow
         console = "Export finish!";
     }
 
-    void ExportXML(GameObject go)
+    private void ExportXML(GameObject go)
     {
         XmlElement docElement = xmlDoc.DocumentElement;
-
         XmlNodeList nodeList = docElement.GetElementsByTagName(go.name);
-        foreach (XmlNode node in nodeList)
-        {
+        foreach (XmlNode node in nodeList){
             docElement.RemoveChild(node);
         }
 
@@ -136,7 +136,7 @@ public sealed class UIEditor : EditorWindow
         xmlDoc.Save(xmlPath);
     }
 
-    void ExportXMLRecursively(GameObject go, XmlNode parent)
+    private void ExportXMLRecursively(GameObject go, XmlNode parent)
     {
         for (int i = 0; i < go.transform.childCount; i++)
         {
@@ -149,4 +149,6 @@ public sealed class UIEditor : EditorWindow
             if (t.childCount > 0) ExportXMLRecursively(t.gameObject, child);
         }
     }
+
+    #endregion
 }
