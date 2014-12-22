@@ -54,8 +54,8 @@ public sealed class UIEditor : EditorWindow
     private void BatchingRename()
     {
         GUILayout.Label("-------------------------------------" + funcDisplayedOptions[function] + "-------------------------------------");
-
         GUILayout.Space(5);
+
         if (GUILayout.Button("Rename", GUILayout.Width(60))){
             Rename(Selection.activeGameObject.transform);
         }
@@ -68,8 +68,11 @@ public sealed class UIEditor : EditorWindow
         for (int i = 0; i < parent.childCount; i++)
         {
             childList.Add(parent.GetChild(i));
-            childList.Sort(CompareByName);
-            
+        }
+
+        childList.Uniquify("_");
+        foreach (Transform t in childList){
+            Debug.Log(t.name);
         }
     }
 
@@ -77,6 +80,7 @@ public sealed class UIEditor : EditorWindow
     {
         return t1.name.CompareTo(t2.name);
     }
+
     #endregion
 
 
@@ -149,6 +153,23 @@ public sealed class UIEditor : EditorWindow
             if (t.childCount > 0) ExportXMLRecursively(t.gameObject, child);
         }
     }
-
     #endregion
+}
+
+public static class EnumerableExtensions
+{
+    public static IEnumerable<Transform> Uniquify(this IEnumerable<Transform> enumerable, string suffix)
+    {
+        HashSet<string> prevItems = new HashSet<string>();
+        foreach (var item in enumerable)
+        {
+            var temp = item;
+            while (prevItems.Contains(temp.name))
+            {
+                temp.name += suffix;
+            }
+            prevItems.Add(temp.name);
+            yield return temp;
+        }
+    }
 }
