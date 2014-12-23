@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using GDM.Asset;
+using System.Runtime.InteropServices;
 
 namespace GDM
 {
@@ -8,12 +9,14 @@ namespace GDM
 	{
 		public class Initializer  : MonoBehaviour
 		{
+		
+			[DllImport("Test")]
+			private static extern  float FooPluginFunction();
+		
 			void Start()
 			{
-				Debug.Log("1111");
+				Debug.Log(FooPluginFunction());
 			}
-
-			
 		}
 	}
 }
