@@ -15,7 +15,6 @@ public sealed class UIEditor : EditorWindow
     private string console = "";
     private Color consoleColor = Color.green;
 
-
     private int function = 0;
     private string[] funcDisplayedOptions = new string[]{
         "Batching Rename",
@@ -67,18 +66,18 @@ public sealed class UIEditor : EditorWindow
         List<Transform> childList = new List<Transform>();
         for (int i = 0; i < parent.childCount; i++)
         {
-            childList.Add(parent.GetChild(i));
+            Transform child = parent.GetChild(i);
+            childList.Add(child);
+            if (child.childCount > 0)
+            {
+                Rename(child);
+            }
         }
 
-        childList.Uniquify("_");
-        foreach (Transform t in childList){
+        foreach (Transform t in childList.Uniquify("_"))
+        {
             Debug.Log(t.name);
         }
-    }
-
-    private int CompareByName(Transform t1, Transform t2)
-    {
-        return t1.name.CompareTo(t2.name);
     }
 
     #endregion
@@ -109,7 +108,7 @@ public sealed class UIEditor : EditorWindow
     {
         if (string.IsNullOrEmpty(xmlPath)){
             consoleColor = Color.red;
-            console = "The file path is incorrent!";
+            console = "The file xpath is incorrent!";
             return;
         }
         xmlDoc.Load(xmlPath);
