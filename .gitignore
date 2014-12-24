@@ -97,3 +97,5 @@ Temp
 *.sln
 *.userprefs
 ProjectSettings/GraphicsSettings.asset
+*.suo
+*.cache

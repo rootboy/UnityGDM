@@ -83,8 +83,6 @@ public class UILayout : MonoBehaviour
 
 #endif
 
-
-    //竖屏
     private void UsePortraitLayout()
     {
         XmlNode parent = xmlDoc.DocumentElement.SelectSingleNode("LandPanel3D");
@@ -94,7 +92,6 @@ public class UILayout : MonoBehaviour
         AdjustUI(target);
     }
 
-    //横屏
     private void UseLandscapeLayout()
     {
         XmlNode parent = xmlDoc.DocumentElement.SelectSingleNode("LandPanel3DHS");
@@ -119,7 +116,7 @@ public class UILayout : MonoBehaviour
     }
 
     /// <summary>
-    /// 适配UI.
+    /// Adjust UI for landscape or portrait style.
     /// </summary>
     private void AdjustUI(GameObject ui)
     {
