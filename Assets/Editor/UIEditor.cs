@@ -7,7 +7,7 @@ using System.Xml;
 /// <summary>
 /// Helper class for operate ui.
 /// </summary>
-public sealed class UIEditor : EditorWindow
+public class UIEditor : EditorWindow
 {
     private string xmlPath = "";
     private List<GameObject> list = new List<GameObject>();
@@ -19,11 +19,18 @@ public sealed class UIEditor : EditorWindow
     private string[] funcDisplayedOptions = new string[]{
         "Batching Rename",
         "Generate Config",
+        "Destroy Component",
     };
     private int[] funcOptionValues = new int[]{
         0,
         1,
+        2,
     };
+
+
+    private GameObject portrait;
+    private GameObject landscape;
+    private string destroyComponent = string.Empty;
 
     [MenuItem("Development/UI Editor")]
     static void Init()
@@ -35,9 +42,11 @@ public sealed class UIEditor : EditorWindow
 
     void OnGUI()
     {
-        GUILayout.Space(5);
-        GUILayout.Label("Please select one function below.");
+        GUILayout.Space(3);      
+        GUILayout.BeginHorizontal();
+        GUILayout.Label("Select one function: ", GUILayout.Width(120));
         function = EditorGUILayout.IntPopup(function, funcDisplayedOptions, funcOptionValues, GUILayout.Width(120));
+        GUILayout.EndHorizontal();
 
         GUILayout.Space(5);
         if (function == 0){
@@ -45,6 +54,9 @@ public sealed class UIEditor : EditorWindow
         }
         else if (function == 1){
             GenerateConfig();
+        }
+        else if (function == 2){
+            DestroyComponent();
         }
     }
 
@@ -73,11 +85,7 @@ public sealed class UIEditor : EditorWindow
                 Rename(child);
             }
         }
-
-        foreach (Transform t in childList.Uniquify("_"))
-        {
-            Debug.Log(t.name);
-        }
+        foreach (Transform t in childList.Uniquify("_")) { }
     }
 
     #endregion
@@ -88,6 +96,8 @@ public sealed class UIEditor : EditorWindow
     private void GenerateConfig()
     {
         GUILayout.Label("-------------------------------------" + funcDisplayedOptions[function] + "-------------------------------------");
+        portrait =  (GameObject)EditorGUILayout.ObjectField("portrait", portrait, typeof(GameObject), true);
+        landscape = (GameObject)EditorGUILayout.ObjectField("landscape", landscape, typeof(GameObject), true);
         GUILayout.Label("File Path: " + xmlPath);
         if (GUILayout.Button("Open", GUILayout.Width(60)))
         {
@@ -112,32 +122,38 @@ public sealed class UIEditor : EditorWindow
             return;
         }
         xmlDoc.Load(xmlPath);
-        
-        foreach (GameObject go in Selection.gameObjects){
-            ExportXML(go);
-        }
+        ExportXML(portrait, landscape);
 
         consoleColor = Color.green;
         console = "Export finish!";
     }
 
-    private void ExportXML(GameObject go)
+    private void ExportXML(GameObject portrait, GameObject landscape)
     {
         XmlElement docElement = xmlDoc.DocumentElement;
-        XmlNodeList nodeList = docElement.GetElementsByTagName(go.name);
-        foreach (XmlNode node in nodeList){
+        XmlNodeList portraitNodeList = docElement.GetElementsByTagName(portrait.name);
+        foreach (XmlNode node in portraitNodeList){
             docElement.RemoveChild(node);
         }
 
-        XmlElement element = xmlDoc.CreateElement(go.name);
-        if (go.transform.localPosition != Vector3.zero) element.SetAttribute("pos", go.transform.localPosition.ToString());
-        if (go.transform.localEulerAngles != Vector3.zero) element.SetAttribute("rot", go.transform.localEulerAngles.ToString());
-        if (go.transform.localScale != Vector3.one) element.SetAttribute("sca", go.transform.localScale.ToString());
+        XmlNodeList landscapeNodeList = docElement.GetElementsByTagName(landscape.name);
+        foreach (XmlNode node in landscapeNodeList){
+            docElement.RemoveChild(node);
+        }
 
-        docElement.AppendChild(element);
-        ExportXMLRecursively(go, element);
+
+
+        XmlElement portraitElement = xmlDoc.CreateElement(portrait.name);
+        portraitElement.SetAttribute("pos", portrait.transform.localPosition.ToString());
+        XmlElement landscapeElement = xmlDoc.CreateElement(landscape.name);
+        landscapeElement.SetAttribute("pos", landscape.transform.localPosition.ToString());
+
+        docElement.AppendChild(portraitElement);
+        docElement.AppendChild(landscapeElement);
+        ExportXMLRecursivelyComparative(portrait.transform, landscape.transform, portraitElement, landscapeElement);
         xmlDoc.Save(xmlPath);
     }
+
 
     private void ExportXMLRecursively(GameObject go, XmlNode parent)
     {
@@ -152,6 +168,95 @@ public sealed class UIEditor : EditorWindow
             if (t.childCount > 0) ExportXMLRecursively(t.gameObject, child);
         }
     }
+
+    private void ExportXMLRecursivelyComparative(Transform porTrans, Transform landTrans, XmlNode porParentNode, XmlNode landParentNode)
+    {
+        for(int i =0; i < porTrans.transform.childCount; i++)
+        {
+            Transform t1 = porTrans.transform.GetChild(i);
+            Transform t2 = landTrans.transform.GetChild(i);
+            XmlElement porChildNode = xmlDoc.CreateElement(t1.name);
+            XmlElement landChildNode = xmlDoc.CreateElement(t2.name);
+            
+            if (t1.localPosition != t2.localPosition) {
+                porChildNode.SetAttribute("pos", t1.localPosition.ToString());
+                landChildNode.SetAttribute("pos", t2.localPosition.ToString());
+            }
+
+            if (t1.localEulerAngles != t2.localEulerAngles) {
+                porChildNode.SetAttribute("rot", t1.localEulerAngles.ToString());
+                landChildNode.SetAttribute("rot", t2.localEulerAngles.ToString());
+            }
+
+            if (t1.localScale != t2.localScale) {
+                porChildNode.SetAttribute("sca", t1.localScale.ToString());
+                landChildNode.SetAttribute("sca", t2.localScale.ToString());
+            }
+
+            if (t1.GetComponent<UISprite>() != null && t2.GetComponent<UISprite>() != null){
+                if (t1.GetComponent<UISprite>().width != t2.GetComponent<UISprite>().width)
+                {
+                    porChildNode.SetAttribute("sprite_w", t1.GetComponent<UISprite>().width.ToString());
+                    landChildNode.SetAttribute("sprite_w", t2.GetComponent<UISprite>().width.ToString());
+                }
+            }
+
+            if (t1.GetComponent<UISprite>() != null && t2.GetComponent<UISprite>() != null){
+                if (t1.GetComponent<UISprite>().height != t2.GetComponent<UISprite>().height)
+                {
+                    porChildNode.SetAttribute("sprite_h", t1.GetComponent<UISprite>().height.ToString());
+                    landChildNode.SetAttribute("sprite_h", t2.GetComponent<UISprite>().height.ToString());
+                }
+            }
+
+            if (t1.GetComponent<UIWidget>() != null && t2.GetComponent<UIWidget>() != null)
+            {
+                if (t1.GetComponent<UIWidget>().depth != t2.GetComponent<UIWidget>().depth)
+                {
+                    porChildNode.SetAttribute("widget_depth", t1.GetComponent<UIWidget>().depth.ToString());
+                    landChildNode.SetAttribute("widget_depth", t2.GetComponent<UIWidget>().depth.ToString());
+                }
+            }
+
+            porParentNode.AppendChild(porChildNode);
+            landParentNode.AppendChild(landChildNode);
+            if (t1.childCount > 0) ExportXMLRecursivelyComparative(t1, t2, porChildNode, landChildNode);
+        }
+    }
+    #endregion
+
+
+    #region DestroyComponent
+
+    void DestroyComponent()
+    {
+        GUILayout.Label("-------------------------------------" + funcDisplayedOptions[function] + "-------------------------------------");
+        GUILayout.Space(5);
+
+        GUILayout.BeginHorizontal();
+        GUILayout.Label("Component: ", GUILayout.Width(100));
+        destroyComponent = GUILayout.TextField(destroyComponent, GUILayout.Width(150));
+        GUILayout.EndHorizontal();
+
+        if (GUILayout.Button("Destroy", GUILayout.Width(60)))
+        {
+            foreach (GameObject item in Selection.gameObjects)
+            {
+                DestroyComponent(item);
+            }
+        }
+    }
+
+    void DestroyComponent(GameObject go)
+    {
+        Component cpt = go.GetComponent(destroyComponent);
+        if (cpt != null) DestroyImmediate(cpt);
+        for(int i=0; i<go.transform.childCount;i++)
+        {
+            DestroyComponent(go.transform.GetChild(i).gameObject);
+        }
+    }
+
     #endregion
 }
 

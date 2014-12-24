@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <LandPanel3D pos="(0.0, 0.0, 285.0)">
+    <PanelDown pos="(0.0, -568.7, 0.0)">
+      <Button_More pos="(265.0, 40.0, 0.0)">
+        <Label widget_depth="4" />
+        <Sprite pos="(1.5, 5.0, 0.0)" sprite_h="69" widget_depth="2" />
+        <Sprite_ widget_depth="1" />
+      </Button_More>
+      <Button_Guild pos="(157.0, 40.0, 0.0)">
+        <Label />
+        <Sprite pos="(4.8, 5.0, 0.0)" />
+        <Sprite_ />
+      </Button_Guild>
+      <Button_Item pos="(50.0, 40.0, 0.0)">
+        <Label />
+        <Sprite pos="(4.9, 5.0, 0.0)" />
+        <Sprite_ />
+      </Button_Item>
+      <Button_Mail pos="(-53.0, 40.0, 0.0)">
+        <Label pos="(4.6, -28.0, 0.0)" />
+        <Sprite pos="(1.6, 5.0, 0.0)" sprite_w="79" />
+        <Sprite_ />
+      </Button_Mail>
+      <Button_Sever pos="(-159.0, 40.0, 0.0)">
+        <Label />
+        <Sprite pos="(6.0, 5.0, 0.0)" />
+        <Sprite_ />
+      </Button_Sever>
+      <Button_Task pos="(11.7, 197.9, 0.0)">
+        <Label />
+      </Button_Task>
+      <BG pos="(0.0, 35.6, 0.0)" sprite_w="640" sprite_h="80" widget_depth="1">
+        <Sprite pos="(0.0, -19.8, 0.0)" sprite_w="640" sprite_h="27" widget_depth="2" />
+      </BG>
+      <Coordinate pos="(121.0, 168.7, 0.0)">
+        <Label_Coordinate />
+      </Coordinate>
+      <Button_Talk pos="(231.7, -9.6, 0.0)" sprite_w="536" widget_depth="0">
+        <Label pos="(-376.0, 100.6, 0.0)" />
+        <Label_ pos="(-376.4, 125.1, 0.0)" />
+        <Label__ pos="(-237.2, 124.0, 0.0)" />
+        <Talk_A pos="(-424.1, 164.5, 0.0)">
+          <Label />
+        </Talk_A>
+        <Talk_W pos="(-337.1, 164.5, 0.0)">
+          <Label />
+        </Talk_W>
+        <Sprite pos="(-388.0, 179.0, 0.0)" sprite_w="296" widget_depth="-1" />
+        <Sprite_ pos="(-328.8, 90.8, 0.0)" widget_depth="-1" />
+      </Button_Talk>
+      <Sprite pos="(-270.0, 82.6, 0.0)" rot="(0.0, 310.0, 357.0)" widget_depth="4">
+        <Sprite_1 widget_depth="5" />
+      </Sprite>
+      <Sprite_ pos="(-280.0, 38.9, 0.0)" rot="(0.0, 318.0, 0.0)" widget_depth="2">
+        <Sprite_1 widget_depth="3" />
+      </Sprite_>
+      <Sprite__ pos="(-280.0, 139.3, 0.0)" rot="(0.0, 318.0, 0.0)">
+        <Sprite_1 />
+      </Sprite__>
+      <Button_Arrow pos="(275.0, 142.4, 0.0)" rot="(10.0, 42.0, 0.0)" sprite_h="90" widget_depth="12">
+        <Sprite pos="(0.0, -48.1, 0.0)" rot="(0.0, 300.0, 0.0)" widget_depth="15" />
+        <Label_Arrow pos="(0.1, -52.3, 0.0)" rot="(350.0, 300.0, 0.0)" />
+        <Sprite_Arrow>
+          <Sprite />
+        </Sprite_Arrow>
+      </Button_Arrow>
+    </PanelDown>
+    <PanelUP pos="(0.0, 568.7, 0.0)">
+      <PanelWorld>
+        <Button_BookMark pos="(148.0, -30.0, 0.0)" widget_depth="1">
+          <Sprite />
+        </Button_BookMark>
+        <Button_Search pos="(-154.0, -30.0, 0.0)" widget_depth="1">
+          <Sprite />
+        </Button_Search>
+        <Toggle pos="(-3.0, -33.1, 0.0)">
+          <Sprite />
+          <Button_ON>
+            <Label_On />
+            <Sprite_On />
+          </Button_ON>
+          <Button_OFF>
+            <Label_OFF />
+            <Sprite_OFF />
+          </Button_OFF>
+        </Toggle>
+        <Button_RMB pos="(348.7, -112.3, 0.0)" widget_depth="1">
+          <Label_RMB pos="(-72.5, 26.1, 0.0)" widget_depth="4" />
+          <Sprite pos="(-68.3, 52.0, 0.0)" widget_depth="3" />
+        </Button_RMB>
+        <Sprite />
+        <Sprite_ pos="(162.8, -15.1, 0.0)" />
+        <Sprit_BG pos="(0.0, 0.0, 0.0)" sprite_w="650" sprite_h="68">
+          <Food pos="(-227.4, -16.0, 0.0)" sca="(0.3, 0.3, 1.0)" />
+          <wood pos="(-130.9, -16.0, 0.0)" sca="(0.3, 0.3, 1.0)" />
+          <Stone pos="(-31.4, -16.0, 0.0)" sca="(0.3, 0.3, 1.0)" />
+          <Gold pos="(72.1, -16.0, 0.0)" sca="(0.3, 0.3, 1.0)" />
+          <Ore pos="(175.8, -16.0, 0.0)" sca="(0.3, 0.3, 1.0)" />
+          <Label_Food pos="(-180.4, -14.8, 0.0)" sca="(1.0, 1.0, 1.0)" />
+          <Label_Wood pos="(-84.0, -16.0, 0.0)" sca="(1.0, 1.0, 1.0)" />
+          <Label_Granit pos="(21.3, -16.0, 0.0)" sca="(1.0, 1.0, 1.0)" />
+          <Label_Ore pos="(226.8, -16.0, 0.0)" sca="(1.0, 1.0, 1.0)" />
+          <Label_Gold pos="(123.7, -16.0, 0.0)" sca="(1.0, 1.0, 1.0)" />
+          <Sprite pos="(0.0, -63.0, 0.0)" sca="(1.0, 1.0, 1.0)" sprite_w="690" widget_depth="0" />
+        </Sprit_BG>
+      </PanelWorld>
+      <Button_HUDControl pos="(-354.4, -103.3, 0.0)" widget_depth="1">
+        <Sprite_HUDToggle pos="(71.4, 34.8, 0.0)" widget_depth="3" />
+      </Button_HUDControl>
+    </PanelUP>
+  </LandPanel3D>
+  <LandPanel3DHS pos="(0.0, 0.0, 0.0)">
+    <PanelDown pos="(0.0, -404.2, 0.0)">
+      <Button_More pos="(546.2, 39.3, 0.0)">
+        <Label widget_depth="5" />
+        <Sprite pos="(1.0, 5.0, 0.0)" sprite_h="74" widget_depth="4" />
+        <Sprite_ widget_depth="3" />
+      </Button_More>
+      <Button_Guild pos="(418.2, 39.3, 0.0)">
+        <Label />
+        <Sprite pos="(5.0, 5.0, 0.0)" />
+        <Sprite_ />
+      </Button_Guild>
+      <Button_Item pos="(290.2, 39.3, 0.0)">
+        <Label />
+        <Sprite pos="(5.0, 5.0, 0.0)" />
+        <Sprite_ />
+      </Button_Item>
+      <Button_Mail pos="(164.2, 39.3, 0.0)">
+        <Label pos="(5.0, -28.0, 0.0)" />
+        <Sprite pos="(2.0, 5.0, 0.0)" sprite_w="88" />
+        <Sprite_ />
+      </Button_Mail>
+      <Button_Sever pos="(38.2, 39.3, 0.0)">
+        <Label />
+        <Sprite pos="(6.0, 5.0, 0.0)" />
+        <Sprite_ />
+      </Button_Sever>
+      <Button_Task pos="(11.7, 98.9, 0.0)">
+        <Label />
+      </Button_Task>
+      <BG pos="(725.1, 1.2, 0.0)" sprite_w="1416" sprite_h="70" widget_depth="-1">
+        <Sprite pos="(-569.4, 35.9, 0.0)" sprite_w="1136" sprite_h="55" widget_depth="0" />
+      </BG>
+      <Coordinate pos="(516.5, 100.8, 0.0)">
+        <Label_Coordinate />
+      </Coordinate>
+      <Button_Talk pos="(-22.0, -79.0, 0.0)" sprite_w="636" widget_depth="3">
+        <Label pos="(-474.9, 91.3, 0.0)" />
+        <Label_ pos="(-474.1, 121.4, 0.0)" />
+        <Label__ pos="(-331.6, 121.4, 0.0)" />
+        <Talk_A pos="(-505.3, 160.9, 0.0)">
+          <Label />
+        </Talk_A>
+        <Talk_W pos="(-403.1, 162.6, 0.0)">
+          <Label />
+        </Talk_W>
+        <Sprite pos="(-506.0, 178.0, 0.0)" sprite_w="410" widget_depth="1" />
+        <Sprite_ pos="(-328.8, 90.8, 0.0)" widget_depth="2" />
+      </Button_Talk>
+      <Sprite pos="(-639.0, 82.6, 0.0)" rot="(0.0, 340.0, 0.0)" widget_depth="6">
+        <Sprite_1 widget_depth="7" />
+      </Sprite>
+      <Sprite_ pos="(-644.9, 38.9, 0.0)" rot="(0.0, 340.0, 0.0)" widget_depth="4">
+        <Sprite_1 widget_depth="5" />
+      </Sprite_>
+      <Sprite__ pos="(-644.9, 139.3, 0.0)" rot="(0.0, 340.0, 0.0)">
+        <Sprite_1 />
+      </Sprite__>
+      <Button_Arrow pos="(669.3, 65.7, 0.0)" rot="(0.0, 0.0, 0.0)" sprite_h="100" widget_depth="1">
+        <Sprite pos="(-1.0, -48.0, 0.0)" rot="(0.0, 0.0, 0.0)" widget_depth="2" />
+        <Label_Arrow pos="(0.6, -52.3, 0.0)" rot="(0.0, 0.0, 0.0)" />
+        <Sprite_Arrow>
+          <Sprite />
+        </Sprite_Arrow>
+      </Button_Arrow>
+    </PanelDown>
+    <PanelUP pos="(0.0, 404.2, 0.0)">
+      <PanelWorld>
+        <Button_BookMark pos="(513.4, 1.5, 0.0)" widget_depth="3">
+          <Sprite />
+        </Button_BookMark>
+        <Button_Search pos="(394.2, 0.3, 0.0)" widget_depth="3">
+          <Sprite />
+        </Button_Search>
+        <Toggle pos="(-446.0, 2.3, 0.0)">
+          <Sprite />
+          <Button_ON>
+            <Label_On />
+            <Sprite_On />
+          </Button_ON>
+          <Button_OFF>
+            <Label_OFF />
+            <Sprite_OFF />
+          </Button_OFF>
+        </Toggle>
+        <Button_RMB pos="(730.9, -78.0, 0.0)" widget_depth="5">
+          <Label_RMB pos="(-64.3, 26.1, 0.0)" widget_depth="7" />
+          <Sprite pos="(-58.9, 52.0, 0.0)" widget_depth="6" />
+        </Button_RMB>
+        <Sprite />
+        <Sprite_ pos="(162.8, -15.1, 0.0)" />
+        <Sprit_BG pos="(9.0, 0.0, 0.0)" sprite_w="1460" sprite_h="30">
+          <Food pos="(-229.4, -13.3, 0.0)" sca="(0.3, 0.3, 1.0)" />
+          <wood pos="(-133.5, -13.3, 0.0)" sca="(0.3, 0.3, 1.0)" />
+          <Stone pos="(-38.5, -13.3, 0.0)" sca="(0.3, 0.3, 1.0)" />
+          <Gold pos="(57.9, -13.3, 0.0)" sca="(0.3, 0.3, 1.0)" />
+          <Ore pos="(153.5, -13.3, 0.0)" sca="(0.3, 0.3, 1.0)" />
+          <Label_Food pos="(-184.8, -13.3, 0.0)" sca="(1.0, 1.0, 1.0)" />
+          <Label_Wood pos="(-88.4, -13.3, 0.0)" sca="(1.0, 1.0, 1.0)" />
+          <Label_Granit pos="(5.9, -13.3, 0.0)" sca="(1.0, 1.0, 1.0)" />
+          <Label_Ore pos="(199.1, -13.3, 0.0)" sca="(1.0, 1.0, 1.0)" />
+          <Label_Gold pos="(102.9, -13.3, 0.0)" sca="(1.0, 1.0, 1.0)" />
+          <Sprite pos="(3.4, -12.7, 0.0)" sca="(1.0, 1.0, 1.0)" sprite_w="1500" widget_depth="1" />
+        </Sprit_BG>
+      </PanelWorld>
+      <Button_HUDControl pos="(-726.5, -68.7, 0.0)" widget_depth="5">
+        <Sprite_HUDToggle pos="(65.4, 40.6, 0.0)" widget_depth="6" />
+      </Button_HUDControl>
+    </PanelUP>
+  </LandPanel3DHS>
+</root>

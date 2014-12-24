@@ -20,11 +20,13 @@ public class UILayout : MonoBehaviour
         }
     }
 
+    public bool isTween;
+
     private XmlDocument xmlDoc = new XmlDocument();
     private List<UIParts> partsList = new List<UIParts>();
     private DeviceOrientation deviceOrientation = DeviceOrientation.Portrait;
     public GameObject target;
-
+    private float time = 1.0f;
 
     public DeviceOrientation Orientation
     {
@@ -35,14 +37,15 @@ public class UILayout : MonoBehaviour
                 if (deviceOrientation == DeviceOrientation.LandscapeLeft) UseLandscapeLayout();
                 if (deviceOrientation == DeviceOrientation.Portrait) UsePortraitLayout();
                 AdjustUI(target);
+                
             }
         }
     }
 
     void Awake()
     {
-        xmlDoc.Load("C:\\Project_403\\SmartWAR\\Assets\\UIConfig.xml");
-        Orientation = Input.deviceOrientation;
+        xmlDoc.Load(Application.streamingAssetsPath + "/" + "UIConfig.xml");
+        //Orientation = Input.deviceOrientation;
     }
 
 #if UNITY_EDITOR
@@ -85,6 +88,8 @@ public class UILayout : MonoBehaviour
     private void UsePortraitLayout()
     {
         XmlNode parent = xmlDoc.DocumentElement.SelectSingleNode("LandPanel3D");
+        partsList.Clear();
+        partsList.Add(new UIParts("", parent.Attributes));
         GetUIPartsInfo(parent, string.Empty);
         AdjustUI(target);
     }
@@ -93,6 +98,8 @@ public class UILayout : MonoBehaviour
     private void UseLandscapeLayout()
     {
         XmlNode parent = xmlDoc.DocumentElement.SelectSingleNode("LandPanel3DHS");
+        partsList.Clear();
+        partsList.Add(new UIParts("", parent.Attributes));
         GetUIPartsInfo(parent, string.Empty);
         AdjustUI(target);
     }
@@ -118,22 +125,77 @@ public class UILayout : MonoBehaviour
     {
         foreach (UIParts item in partsList)
         {
+            XmlAttribute attr = null;
+
+            if (item.xpath == string.Empty){
+                attr = (XmlAttribute)item.attrColl.GetNamedItem("pos");
+                if (attr != null)
+                {
+
+                    ui.transform.localPosition = StringToVector3(attr.Value);
+
+                    //if (!isTween)
+                    //    ui.transform.localPosition = StringToVector3(attr.Value);
+                    //else
+                    //    iTween.MoveTo(ui, iTween.Hash(
+                    //    "position", StringToVector3(attr.Value),
+                    //    "time", time,
+                    //    "islocal", true)
+                    //    );
+                }
+                continue;
+            }
+
             Transform t = ui.transform.Find(item.xpath);
             if (t == null) continue;
 
-            XmlAttribute attr = null;
-
             attr = (XmlAttribute)item.attrColl.GetNamedItem("pos");
-            if (attr != null) t.localPosition = StringToVector3(attr.Value);
-            else t.localPosition = Vector3.zero;
+            if (attr != null){
+                if(!isTween)
+                    t.localPosition = StringToVector3(attr.Value);
+                else
+                    iTween.MoveTo(t.gameObject,  iTween.Hash(
+                    "position", StringToVector3(attr.Value),
+                    "time", time,
+                    "islocal", true)
+                    );
+            } 
 
             attr = (XmlAttribute)item.attrColl.GetNamedItem("rot");
-            if (attr != null) t.localEulerAngles = StringToVector3(attr.Value);
-            else t.localEulerAngles = Vector3.zero;
+            if (attr != null) {
+                if(!isTween)
+                    t.localEulerAngles = StringToVector3(attr.Value);
+                else
+                    iTween.RotateTo(t.gameObject, iTween.Hash(
+                    "rotation", StringToVector3(attr.Value),
+                    "time", time,
+                    "islocal", true)
+                    );
+            } 
 
             attr = (XmlAttribute)item.attrColl.GetNamedItem("sca");
-            if (attr != null) t.localScale = StringToVector3(attr.Value);
-            else t.localScale = Vector3.one;
+            if (attr != null) {
+               if(!isTween) 
+                   t.localScale = StringToVector3(attr.Value);
+               else
+                   iTween.ScaleTo(t.gameObject, iTween.Hash(
+                   "scale", StringToVector3(attr.Value),
+                   "time", time,
+                   "islocal", true)
+                   );
+            } 
+
+            attr = (XmlAttribute)item.attrColl.GetNamedItem("sprite_w");
+            if (attr != null) 
+                t.GetComponent<UISprite>().width = int.Parse(attr.Value);
+
+            attr = (XmlAttribute)item.attrColl.GetNamedItem("sprite_h");
+            if (attr != null) 
+                t.GetComponent<UISprite>().height = int.Parse(attr.Value);
+
+            attr = (XmlAttribute)item.attrColl.GetNamedItem("widget_depth");
+            if (attr != null) 
+                t.GetComponent<UIWidget>().depth = int.Parse(attr.Value);
         }
     }
 
