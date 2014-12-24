@@ -96,6 +96,6 @@ Temp
 *.csproj
 *.sln
 *.userprefs
-ProjectSettings/GraphicsSettings.asset
+*.asset
 *.suo
 *.cache
