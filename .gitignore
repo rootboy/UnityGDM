@@ -99,3 +99,4 @@ Temp
 *.asset
 *.suo
 *.cache
+ProjectSettings/GraphicsSettings.asset
