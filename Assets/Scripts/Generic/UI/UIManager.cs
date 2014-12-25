@@ -56,6 +56,13 @@ namespace GDM
 
 			}
 
+            /// <summary>
+            /// Get all visible ui currently.
+            /// </summary>
+            public List<GameObject> GetAllVisibleUI()
+            {
+                return null;
+            }
         }
     } 
 } 

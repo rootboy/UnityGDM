@@ -39,10 +39,7 @@ using System.Reflection;
 using UnityEngine;
 #endregion
 
-namespace SmartWar
-{
-    namespace Global
-    {
+
 /// <summary>
 /// <para>Version: 2.0.46</para>	 
 /// <para>Author: Bob Berkebile (http://pixelplacement.com)</para>
@@ -8630,7 +8627,4 @@ public class iTween : MonoBehaviour
 	public static void tweenCount(GameObject target, Hashtable args){Debug.LogError("iTween Error: tweenCount() has been deprecated. Please investigate Count().");}
 	*/
     #endregion
-}
-
-}
 }

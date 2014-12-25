@@ -93,10 +93,9 @@ Temporary Items
 >>>>>>> origin/master
 Library
 Temp
+obj
 *.csproj
 *.sln
 *.userprefs
 *.asset
-*.suo
 *.cache
-ProjectSettings/GraphicsSettings.asset
