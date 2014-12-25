@@ -96,10 +96,9 @@ public class UILayout : MonoBehaviour
 
 #endif
 
-<<<<<<< HEAD
+
     //竖屏
-=======
->>>>>>> 732146ae6eb4af09ae91079101326f025de11d19
+
     private void UsePortraitLayout()
     {
         XmlNode parent = xmlDoc.DocumentElement.SelectSingleNode("LandPanel3D");
