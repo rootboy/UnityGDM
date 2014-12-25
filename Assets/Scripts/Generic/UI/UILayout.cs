@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
+using SmartWar.Global;
 
 /// <summary>
 /// UILayout used to adjust ui between Portrait and Landscape.
@@ -27,6 +28,7 @@ public class UILayout : MonoBehaviour
     private DeviceOrientation deviceOrientation = DeviceOrientation.Portrait;
     public GameObject target;
     private float time = 1.0f;
+    private iTween.EaseType easeType = iTween.EaseType.easeInOutBack;
 
     public DeviceOrientation Orientation
     {
@@ -45,7 +47,7 @@ public class UILayout : MonoBehaviour
     void Awake()
     {
         xmlDoc.Load(Application.streamingAssetsPath + "/" + "UIConfig.xml");
-        //Orientation = Input.deviceOrientation;
+        Orientation = Input.deviceOrientation;
     }
 
 #if UNITY_EDITOR
@@ -59,8 +61,19 @@ public class UILayout : MonoBehaviour
         if (GUILayout.Button("Landscape"))
         {
             UseLandscapeLayout();
-        }  
+        }
+        //if (GUILayout.Button("Test"))
+        //{
+        //    UISprite sprite = target.GetComponent<UISprite>();
+        //    Vector2 to = new Vector2(5 * sprite.width, sprite.height);
+
+        //    iTween.SpriteScaleTo(target, iTween.Hash
+        //        ("time", 2.0f,
+        //        "to", to
+        //        ));
+        //}  
 	}
+
 #endif
 
 #if !UNITY_EDITOR
@@ -83,6 +96,10 @@ public class UILayout : MonoBehaviour
 
 #endif
 
+<<<<<<< HEAD
+    //竖屏
+=======
+>>>>>>> 732146ae6eb4af09ae91079101326f025de11d19
     private void UsePortraitLayout()
     {
         XmlNode parent = xmlDoc.DocumentElement.SelectSingleNode("LandPanel3D");
@@ -154,7 +171,8 @@ public class UILayout : MonoBehaviour
                     iTween.MoveTo(t.gameObject,  iTween.Hash(
                     "position", StringToVector3(attr.Value),
                     "time", time,
-                    "islocal", true)
+                    "islocal", true,
+                    "easetype", easeType)
                     );
             } 
 
@@ -182,13 +200,17 @@ public class UILayout : MonoBehaviour
                    );
             } 
 
-            attr = (XmlAttribute)item.attrColl.GetNamedItem("sprite_w");
-            if (attr != null) 
-                t.GetComponent<UISprite>().width = int.Parse(attr.Value);
-
-            attr = (XmlAttribute)item.attrColl.GetNamedItem("sprite_h");
-            if (attr != null) 
-                t.GetComponent<UISprite>().height = int.Parse(attr.Value);
+            attr = (XmlAttribute)item.attrColl.GetNamedItem("sprite_size");
+            if (attr != null) {
+                if (!isTween)
+                    t.GetComponent<UISprite>().width = int.Parse(attr.Value);
+                else
+                    iTween.SpriteScaleTo(t.gameObject, iTween.Hash(
+                    "to", StringToVector2(attr.Value),
+                    "time", time,
+                    "easetype", easeType)
+                     );
+            }
 
             attr = (XmlAttribute)item.attrColl.GetNamedItem("widget_depth");
             if (attr != null) 
@@ -203,5 +225,11 @@ public class UILayout : MonoBehaviour
     {
         string[] array = str.Trim('(', ')').Split(',');
         return new Vector3(float.Parse(array[0]), float.Parse(array[1]), float.Parse(array[2]));
+    }
+
+    private Vector2 StringToVector2(string str)
+    {
+        string[] array = str.Trim('(', ')').Split(',');
+        return new Vector2(float.Parse(array[0]), float.Parse(array[1]));
     }
 }
