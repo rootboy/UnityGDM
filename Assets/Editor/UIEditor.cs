@@ -193,19 +193,15 @@ public class UIEditor : EditorWindow
                 landChildNode.SetAttribute("sca", t2.localScale.ToString());
             }
 
-            if (t1.GetComponent<UISprite>() != null && t2.GetComponent<UISprite>() != null){
-                if (t1.GetComponent<UISprite>().width != t2.GetComponent<UISprite>().width)
-                {
-                    porChildNode.SetAttribute("sprite_w", t1.GetComponent<UISprite>().width.ToString());
-                    landChildNode.SetAttribute("sprite_w", t2.GetComponent<UISprite>().width.ToString());
-                }
-            }
 
-            if (t1.GetComponent<UISprite>() != null && t2.GetComponent<UISprite>() != null){
-                if (t1.GetComponent<UISprite>().height != t2.GetComponent<UISprite>().height)
+            UISprite sprite1 = t1.GetComponent<UISprite>();
+            UISprite sprite2 = t2.GetComponent<UISprite>();
+            if (sprite1 != null && sprite2 != null){
+                if (sprite1.width != sprite2.width ||
+                    sprite1.height != sprite2.height)
                 {
-                    porChildNode.SetAttribute("sprite_h", t1.GetComponent<UISprite>().height.ToString());
-                    landChildNode.SetAttribute("sprite_h", t2.GetComponent<UISprite>().height.ToString());
+                    porChildNode.SetAttribute("sprite_size", new Vector2(sprite1.width, sprite1.height).ToString());
+                    landChildNode.SetAttribute("sprite_size", new Vector2(sprite2.width, sprite2.height).ToString());
                 }
             }
 
