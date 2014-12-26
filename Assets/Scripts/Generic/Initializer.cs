@@ -9,14 +9,7 @@ namespace GDM
 	{
 		public class Initializer  : MonoBehaviour
 		{
-		
-			[DllImport("Test")]
-			private static extern  float FooPluginFunction();
-		
-			void Start()
-			{
-				Debug.Log(FooPluginFunction());
-			}
+
 		}
 	}
 }
