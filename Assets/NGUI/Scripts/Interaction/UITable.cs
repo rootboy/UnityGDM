@@ -197,12 +197,13 @@ public class UITable : UIWidgetContainer
 			Transform t = children[i];
 			Bounds b = NGUIMath.CalculateRelativeWidgetBounds(t, !hideInactive);
 
+
 			Vector3 scale = t.localScale;
 			b.min = Vector3.Scale(b.min, scale);
 			b.max = Vector3.Scale(b.max, scale);
 			bounds[y, x] = b;
 
-			boundsRows[x].Encapsulate(b);
+            boundsRows[x].Encapsulate(b);
 			boundsCols[y].Encapsulate(b);
 
 			if (++x >= columns && columns > 0)
