@@ -241,6 +241,8 @@ public class UITable : UIWidgetContainer
 
 			xOffset += br.size.x + padding.x * 2f;
 
+
+
 			t.localPosition = pos;
 
 			if (++x >= columns && columns > 0)
