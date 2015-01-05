@@ -1069,9 +1069,9 @@ public class FingerGestures : MonoBehaviour
 
     /*
 iPhone3        320x480  163 ppi
-iPhone4        640×960  326 ppi 
-iPhone4S       640×960  326 ppi 
-iPhone5        640×1136 326 ppi 
+iPhone4        640?60  326 ppi 
+iPhone4S       640?60  326 ppi 
+iPhone5        640?136 326 ppi 
 iPhone5S       640x1136 326 ppi
 iPad          1024x768  132 ppi
 iPad2         1024x768  132 ppi
