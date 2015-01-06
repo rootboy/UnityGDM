@@ -1,6 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using GDM.Global;
+using GDM.UI;
+
+
+public interface IFTETrigger
+{
+    void OnInput();
+
+
+
+
+
+}
 
 
 /// <summary>
@@ -8,34 +21,77 @@ using GDM.Global;
 /// </summary>
 public sealed class FTE : Singleton<FTE> 
 {
-    private int mGuideId;
-    private int mStep;
-
-    public void OnGuideStart()
+    private class FTEStep
     {
-        //TODO: Initialize
+        public string target;
+        public int style;
+        public object param;
     }
 
-    public void OnGuideEnd()
+    private class FTEInfo
     {
-        //TODO: Uninitialize
+        public int stepIndex;
+        public FTEStep[] steps; 
     }
+
+
+    private Dictionary<int, FTEInfo> mDicFTE = new Dictionary<int, FTEInfo>();
+    private FTEInfo mCurrentFTE;
+    private bool isNeedMask;
+    private int mFTEId;
+    private GameObject uiGuide;
+
+    private void OnGuideStart()
+    {
+        mCurrentFTE = mDicFTE[mFTEId];
+        UIManager.instance.CreateUI("UIGuide", null, false);
+    }
+
+
+    private void OnGuideEnd()
+    {
+        StopAllCoroutines();
+        UIManager.instance.DestroyUI("UIGuide");
+    }
+
 
     /// <summary>
-    /// Next step for this guide.
+    /// Do the next step guide.
     /// </summary>
-    public void NextStep()
+    private void NextStep()
     {
-        //TODO: display next guide step
+        if (mCurrentFTE.stepIndex < mCurrentFTE.steps.Length)
+        {
+            mCurrentFTE.stepIndex++; 
+            return;
+        }
+        OnGuideEnd();
     }
 
+
     /// <summary>
-    /// Previous step for this guide.
+    /// Do the previous step guide.
     /// </summary>
-    public void PreviousStep()
+    private void PreviousStep()
     {
-        //TODO: display previous guide step
+        if(mCurrentFTE.stepIndex > 0)
+        {
+            mCurrentFTE.stepIndex--;
+        }
     }
+
+
+    private IEnumerator Guide()
+    {
+        //TODO: 
+        bool isVisible = UIManager.instance.IsVisible("");
+        while(!isVisible)
+        {
+             yield return new WaitForSeconds(0.1f);
+        }
+        Display();
+    }
+
 
     /// <summary>
     /// Display current guide for various of style.

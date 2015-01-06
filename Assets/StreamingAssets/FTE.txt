@@ -1,0 +1,21 @@
+"1" : 
+{
+	"type" : "OnGameStart",
+	"step":
+	{
+		"1" : 
+		{
+			"target" : "path",
+			"style" : 1,
+			"param" : null,
+		},
+		"2" :
+		{
+		
+		},
+		"3" :
+		{
+		
+		}
+	}
+}
