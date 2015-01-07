@@ -17,52 +17,26 @@ namespace GDM
             protected string labelFilter = "Label_";
             protected string spriteFilter = "Sprite_";
 
-            protected virtual void Awake()
+            void Awake()
             {
                 GetAllReference();
                 OnAwake();
             }
 
-            protected virtual void Start()
+            void Start()
             {
                 RegisterEvent();
                 OnStart();
             }
 
-            protected virtual void OnAwake()
-            {
+            protected virtual void OnAwake(){}
+            protected virtual void OnStart(){}
+            public virtual void OnCreate(object param){}
+            public virtual void OnDestroy(){}
+            public virtual void OnVisible(object param){}
+            public virtual void OnInvisible(object param){}
+            protected virtual void OnClick(GameObject param){}
 
-            }
-
-            protected virtual void OnStart()
-            {
-
-            }
-
-            public virtual void OnCreate(object param)
-            {
-
-            }
-
-            public virtual void OnDestroy()
-            {
-
-            }
-
-            public virtual void OnVisible(object param)
-            {
-
-            }
-
-            public virtual void OnInvisible(object param)
-            {
-
-            }
-
-            protected virtual void OnClick(GameObject param)
-            {
-
-            }
 
             protected virtual void RegisterEvent()
             {
@@ -75,7 +49,7 @@ namespace GDM
             /// <summary>
             /// Get references of ui controls.
             /// </summary>
-            protected void GetAllReference()
+            private void GetAllReference()
             {
                 GetReference<BoxCollider>(buttonFilter, dicBtns);
                 GetReference<UILabel>(labelFilter, dicLabels);
@@ -86,9 +60,6 @@ namespace GDM
             /// <summary>
             /// Generic functions for get references of all ui components.
             /// </summary>
-            /// <typeparam name="T"></typeparam>
-            /// <param name="filter"></param>
-            /// <param name="dic"></param>
             protected void GetReference<T>(string filter, IDictionary dic) where T : Component
             {
                 T[] array = GetComponentsInChildren<T>(true);
@@ -96,8 +67,7 @@ namespace GDM
                 {
                     if (item.name.Contains(filter))
                     {
-                        if (dic.Contains(item.name))
-                        {
+                        if (dic.Contains(item.name)){
                             Debug.LogError("");
                             continue;
                         }

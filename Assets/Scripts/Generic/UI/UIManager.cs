@@ -176,6 +176,16 @@ namespace GDM
                 return true;
             }
 
+            /// <summary>
+            /// Is the ui where on the relative static(No tween component running)?
+            /// </summary>
+            /// <param name="relativePath"></param>
+            /// <returns></returns>
+            public bool IsStatic(string relativePath)
+            {
+                return true;
+            }
+
 
             /// <summary>
             /// Retrieve all visible ui currently.
