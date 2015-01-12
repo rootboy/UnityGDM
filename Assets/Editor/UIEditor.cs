@@ -15,23 +15,21 @@ public class UIEditor : EditorWindow
 {
     //GUI Options
     private int function = 0;
+    private int[] funcOptionValues = new int[] { 0, 1, 2 };
     private string[] funcDisplayedOptions = new string[]
     { 
         "Batching Rename", 
         "Batching Destroy", 
         "Generate Config"
     };
-    private int[] funcOptionValues = new int[]{ 0, 1, 2};
-
+   
     private List<string> consoleList = new List<string>();
     private XmlDocument xmlDoc = new XmlDocument();
     private string XMLPath = "";
     
     private GameObject portObject;
     private GameObject landObject;
-    private List<GameObject> list = new List<GameObject>();
-    private string destroyComponent = string.Empty;
-
+    private string destroyComponent = "";
 
 
     [MenuItem("Development/UI Editor")]
@@ -64,10 +62,7 @@ public class UIEditor : EditorWindow
         }
 
         //Console message
-        for(int i=0;i<consoleList.Count;i++)
-        {
-            GUILayout.Label(consoleList[i]);
-        }
+        Console();
     }
 
     #region Batching Rename
@@ -153,7 +148,7 @@ public class UIEditor : EditorWindow
         }
         if(GUILayout.Button("Compare", GUILayout.Width(60)))
         {
-
+            CompareBasePortrait(portObject.transform, string.Empty);
         }
     }
 
@@ -259,22 +254,29 @@ public class UIEditor : EditorWindow
         }
     }
 
+    private void Compare()
+    {
+        consoleList.Clear();
+        CompareBasePortrait(portObject.transform, "");
+    }
 
     private void CompareBasePortrait(Transform portrait, string path)
     {
         for(int i=0, imax=portrait.childCount; i < imax; i++)
-        {
-            string relativePath = "";
+        {   
             Transform portChild = portrait.GetChild(i);
+            string relativePath = path + portChild.name;
             Transform landChild = landObject.transform.Find(relativePath);
 
-            if(landChild == null){
-                consoleList.Add("");
+            if(landChild == null)
+            {
+                consoleList.Add(string.Format("child is null: {0}", relativePath));
                 continue;
             }
 
-            if (portChild.name != landChild.name){
-                consoleList.Add("");
+            if (portChild.name != landChild.name)
+            {
+                consoleList.Add(string.Format("name not equal: {0}", relativePath));
                 continue;
             }
 
@@ -282,33 +284,55 @@ public class UIEditor : EditorWindow
             UISprite landSprite = landChild.GetComponent<UISprite>();
             if(portSprite != null)
             {
-                if (landSprite == null){
-                    consoleList.Add("");
+                if (landSprite == null)
+                {
+                    consoleList.Add(string.Format("sprite is null: {0}", relativePath));
                     continue;
                 }
                 
-                if (portSprite.atlas != landSprite.atlas){
-                    consoleList.Add("");
+                if (portSprite.atlas != landSprite.atlas)
+                {
+                    consoleList.Add(string.Format("atlas not equal: {0}", relativePath));
                     continue;
                 }
 
-                if (portSprite.spriteName != landSprite.spriteName){
-                    consoleList.Add("");
+                if (portSprite.spriteName != landSprite.spriteName)
+                {
+                    consoleList.Add(string.Format("spriteName not equal: {0}", relativePath));
                     continue;
                 }
 
-                if(portSprite.rawPivot != landSprite.rawPivot){
-                    consoleList.Add("");
+                if(portSprite.rawPivot != landSprite.rawPivot)
+                {
+                    consoleList.Add(string.Format("Pivot not equal: {0}", relativePath));
                     continue;
                 }
             }
+
+            if(portChild.childCount > 0)
+            {
+                CompareBasePortrait(portChild, relativePath + "/");
+            }
         }
     }
+
+    #endregion
+
+
+    #region Helper
+
+    private void Console()
+    {
+        for(int i=0, imax = consoleList.Count; i<imax;i++)
+        {
+            GUILayout.Label(consoleList[i]);
+        }
+    }
+
     #endregion
 }
 
 
-#region Helper
 
 public static class EnumerableExtensions
 {
@@ -327,5 +351,3 @@ public static class EnumerableExtensions
         }
     }
 }
-
-#endregion
