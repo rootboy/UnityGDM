@@ -154,9 +154,6 @@ namespace GDM
                 for(int i=0; i<Input.touchCount;i++)
                 {
                     Touch touch = Input.GetTouch(i);
-
-
-
                 }
 
             }
