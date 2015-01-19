@@ -100,3 +100,4 @@ obj
 *.unityproj
 *.asset
 *.cache
+*.suo
