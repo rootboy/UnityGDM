@@ -6,17 +6,17 @@ using System.Xml;
 
 
 /// <summary>
-/// Helper class for operate ui, 3 functions below:
+/// Helper class for operate ui,  3 functions below:
 /// 1、Batching rename.
 /// 2、Batching destroy.
 /// 3、Generate config.
 /// </summary>
 public class UIEditor : EditorWindow
 {
-    //GUI Options
+    //GUI Function options
     private int function = 0;
-    private int[] funcOptionValues = new int[] { 0, 1, 2 };
-    private string[] funcDisplayedOptions = new string[]
+    private int[] funcValueOptions = new int[] { 0, 1, 2 };
+    private string[] funcDisplayOptions = new string[]
     { 
         "Batching Rename", 
         "Batching Destroy", 
@@ -24,58 +24,89 @@ public class UIEditor : EditorWindow
     };
    
     private List<string> consoleList = new List<string>();
+    private List<Transform> selectionList = new List<Transform>();
     private XmlDocument xmlDoc = new XmlDocument();
-    private string XMLPath = "";
+    private string xmlPath = "";
     
     private GameObject portObject;
     private GameObject landObject;
-    private string destroyComponent = "";
+
+    private List<GameObject> GameObjectList = new List<GameObject>();
+    private string killComponentName = "";
+    private Vector2 mScroll;
 
 
     [MenuItem("Development/UI Editor")]
     static void Init()
     {
         UIEditor editor = (UIEditor)EditorWindow.GetWindow(typeof(UIEditor), true, "UI Editor", true);
-        editor.maxSize = new Vector2(500, 300);
-        editor.minSize = new Vector2(500, 300);
+        editor.maxSize = new Vector2(550, 600);
+        editor.minSize = new Vector2(550, 600);
+    }
+
+    void OnEnable()
+    {
+        GameObjectList.Add(null);
+        GameObjectList.Add(null);
     }
 
     void OnGUI()
     {
         GUILayout.Space(3);      
         GUILayout.Label("Please Select One Function Below: ");
-        function = EditorGUILayout.IntPopup(function, funcDisplayedOptions, funcOptionValues, GUILayout.Width(120));
+        function = EditorGUILayout.IntPopup(function, funcDisplayOptions, funcValueOptions, GUILayout.Width(120));
 
         GUILayout.Space(10);
-        GUILayout.Label("*****************************************************************");
-        switch(function)
-        {
-            case 0:
-                BatchingRename();
-                break;
-            case 1:
-                BatchingDestroy();
-                break;
-            case 2:
-                GenerateConfig();
-                break;
-        }
+        GUILayout.Label("**************************************************************");
 
-        //Console message
-        Console();
+        if (function == 0)
+        {
+            BatchingRename();
+        }
+        else if (function == 1)
+        {
+            BatchingDestroy();
+        }
+        else if (function == 2)
+        {
+            GenerateConfig();
+        }
     }
 
-    #region Batching Rename
 
+    /// <summary>
+    /// Batching rename the select transforms.
+    /// </summary>   
     private void BatchingRename()
     {
-        GUILayout.Space(5);
-        if (GUILayout.Button("Rename", GUILayout.Width(60)))
+        int index = 0;
+        int count = Selection.transforms.Length;
+
+        if (count == 0)
+            EditorGUILayout.HelpBox("You must select at least one transform first!", MessageType.Warning);
+
+        EditorGUI.BeginDisabledGroup(count == 0);
+        bool rename = GUILayout.Button("Rename");
+        EditorGUI.EndDisabledGroup();
+
+        if(rename)
         {
-            Rename(Selection.activeGameObject.transform);
+            foreach (Transform item in Selection.transforms) Rename(item);
         }
+
+        mScroll = GUILayout.BeginScrollView(mScroll);
+        foreach(Transform item in Selection.transforms)
+        {
+            GUILayout.Label(string.Format("{0}\t\t{1}", index, item.name));
+            index++;
+        }
+        GUILayout.EndScrollView();
     }
 
+
+    /// <summary>
+    /// Rename the child which has the same name by add suffix "_".
+    /// </summary>
     private void Rename(Transform parent)
     {
         if (parent == null) return;
@@ -92,31 +123,50 @@ public class UIEditor : EditorWindow
         foreach (Transform t in childList.Uniquify("_")) { }
     }
 
-    #endregion
 
-
-    #region Batching Destroy
-
+    /// <summary>
+    /// Batching destroy specify component of the seleced transforms.
+    /// </summary>
     void BatchingDestroy()
     {
+        int index = 0;
+        int count = Selection.transforms.Length;
+
         GUILayout.Space(5);
         GUILayout.BeginHorizontal();
-        GUILayout.Label("Component: ", GUILayout.Width(100));
-        destroyComponent = GUILayout.TextField(destroyComponent, GUILayout.Width(150));
+        GUILayout.Label("Component Name: ", GUILayout.Width(100));
+        killComponentName = GUILayout.TextField(killComponentName, GUILayout.Width(150));
         GUILayout.EndHorizontal();
 
-        if (GUILayout.Button("Destroy", GUILayout.Width(60)))
+        EditorGUILayout.HelpBox("You can enter the name of component which will be destroyed.", MessageType.Info);
+        if (count == 0)
+            EditorGUILayout.HelpBox("You must select at least one transform first!", MessageType.Warning);
+
+        EditorGUI.BeginDisabledGroup(count == 0);
+        bool destroy = GUILayout.Button("Destroy");
+        EditorGUI.EndDisabledGroup();
+
+        if(destroy)
         {
-            foreach (GameObject item in Selection.gameObjects)
-            {
-                DestroyComponent(item);
-            }
+            foreach (GameObject item in Selection.gameObjects) DestroyComponent(item);
         }
+
+        mScroll = GUILayout.BeginScrollView(mScroll);
+        foreach (Transform item in Selection.transforms)
+        {
+            GUILayout.Label(string.Format("{0}\t\t{1}", index, item.name));
+            index++;
+        }
+        GUILayout.EndScrollView();
     }
 
+    
+    /// <summary>
+    /// Destroy the specify component of gameobject.
+    /// </summary>
     void DestroyComponent(GameObject go)
     {
-        Component cpt = go.GetComponent(destroyComponent);
+        Component cpt = go.GetComponent(killComponentName);
         if (cpt != null) DestroyImmediate(cpt);
         for (int i = 0; i < go.transform.childCount; i++)
         {
@@ -124,42 +174,55 @@ public class UIEditor : EditorWindow
         }
     }
 
-    #endregion
-    
-
-    #region Generate Config
 
     private void GenerateConfig()
     {
-        portObject =  (GameObject)EditorGUILayout.ObjectField("portObject", portObject, typeof(GameObject), true, GUILayout.Width(350));
-        landObject = (GameObject)EditorGUILayout.ObjectField("landObject", landObject, typeof(GameObject), true, GUILayout.Width(350));
-        
-        GUILayout.Label("File Path: " + XMLPath);
-        
-        if (GUILayout.Button("Open", GUILayout.Width(60)))
+        GUILayout.Label("XML File: " + xmlPath);
+        bool open = GUILayout.Button("Open");
+        bool export =GUILayout.Button("Export");
+
+        if (open)
         {
-            XMLPath = EditorUtility.OpenFilePanel("", "", "xml");
+            xmlPath = EditorUtility.OpenFilePanel("", "", "xml");
         }
 
-        GUILayout.Space(5);
-        if (GUILayout.Button("Export", GUILayout.Width(60)))
+        if(export)
         {
             Export();
         }
-        if(GUILayout.Button("Compare", GUILayout.Width(60)))
+
+        GUILayout.Space(10.0f);
+        EditorGUIUtility.labelWidth = 80.0f;
+
+        mScroll = EditorGUILayout.BeginScrollView(mScroll);
+        for (int i = 0; i+1 < GameObjectList.Count; i=i+2)
         {
-            CompareBasePortrait(portObject.transform, string.Empty);
+            GUILayout.BeginHorizontal();
+            GameObjectList[i] = (GameObject)EditorGUILayout.ObjectField("Portrait", GameObjectList[i], typeof(UnityEngine.GameObject), true, GUILayout.Width(230));
+            GUILayout.Space(10.0f);
+            GameObjectList[i+1] = (GameObject)EditorGUILayout.ObjectField("Landscape", GameObjectList[i+1], typeof(UnityEngine.GameObject), true, GUILayout.Width(230));
+            if(GUILayout.Button("-"))
+            {
+                GameObjectList.RemoveRange(i, 2);
+            }
+            if(GUILayout.Button("+"))
+            {
+                GameObjectList.Add(null);
+                GameObjectList.Add(null);
+            }
+            GUILayout.EndHorizontal();
         }
+        EditorGUILayout.EndScrollView();
     }
 
     private void Export()
     {
-        if (string.IsNullOrEmpty(XMLPath))
+        if (string.IsNullOrEmpty(xmlPath))
         {
             consoleList.Add("error: file path of xml is incorrect!");
             return;
         }
-        xmlDoc.Load(XMLPath);
+        xmlDoc.Load(xmlPath);
         ExportXML(portObject, landObject);
     }
 
@@ -186,7 +249,7 @@ public class UIEditor : EditorWindow
         docElement.AppendChild(portraitElement);
         docElement.AppendChild(landscapeElement);
         ExportXMLRecursivelyComparative(portrait.transform, landscape.transform, portraitElement, landscapeElement);
-        xmlDoc.Save(XMLPath);
+        xmlDoc.Save(xmlPath);
     }
 
     private void ExportXMLRecursively(GameObject go, XmlNode parent)
@@ -230,13 +293,20 @@ public class UIEditor : EditorWindow
 
             UISprite sprite1 = t1.GetComponent<UISprite>();
             UISprite sprite2 = t2.GetComponent<UISprite>();
-            if (sprite1 != null && sprite2 != null){
-                if (sprite1.width != sprite2.width ||
-                    sprite1.height != sprite2.height)
+            if (sprite1 != null && sprite2 != null)
+            {
+                if (sprite1.width != sprite2.width)
                 {
-                    porChildNode.SetAttribute("sprite_size", new Vector2(sprite1.width, sprite1.height).ToString());
-                    landChildNode.SetAttribute("sprite_size", new Vector2(sprite2.width, sprite2.height).ToString());
+                    porChildNode.SetAttribute("sprite_size_width", sprite1.width.ToString());
+                    landChildNode.SetAttribute("sprite_size_width", sprite2.width.ToString());
                 }
+
+                if (sprite1.height != sprite2.height)
+                {
+                    porChildNode.SetAttribute("sprite_size_height", sprite1.height.ToString());
+                    landChildNode.SetAttribute("sprite_size_height", sprite2.height.ToString());
+                }
+
             }
 
             if (t1.GetComponent<UIWidget>() != null && t2.GetComponent<UIWidget>() != null)
@@ -316,20 +386,11 @@ public class UIEditor : EditorWindow
         }
     }
 
-    #endregion
 
-
-    #region Helper
-
-    private void Console()
+    void OnSelectionChange()
     {
-        for(int i=0, imax = consoleList.Count; i<imax;i++)
-        {
-            GUILayout.Label(consoleList[i]);
-        }
+        Repaint();
     }
-
-    #endregion
 }
 
 
