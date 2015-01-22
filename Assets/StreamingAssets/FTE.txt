@@ -1,21 +1,23 @@
-"1“Ù∆µ" : 
+"1" :
 {
 	"type" : "OnGameStart",
 	"step":
 	{
 		"1" : 
 		{
-			"content": "UIGuide",
+			"style": "UIGuide",
 			"targetName": "Button_Menu",
-			"targetParam" : "",
+			"targetParam": "",
+			"targetAction" : "OnClick",
+
 		},
 		"2" :
 		{
-		
-		},
-		"3" :
-		{
-		
+
 		}
 	}
+}
+"2":
+{
+	
 }

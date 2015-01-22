@@ -176,14 +176,20 @@ namespace GDM
                 return true;
             }
 
+
             /// <summary>
-            /// Is the ui where on the relative static(No tween component running)?
+            /// Find a child where on the relativePath. 
             /// </summary>
             /// <param name="relativePath"></param>
             /// <returns></returns>
-            public bool IsStatic(string relativePath)
+            public GameObject FindChild(string relativePath)
             {
-                return true;
+                Transform child = root.transform.Find(relativePath);
+                if(child != null)
+                {
+                    return child.gameObject;
+                }
+                return null;
             }
 
 
