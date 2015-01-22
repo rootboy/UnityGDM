@@ -13,25 +13,34 @@ using System.Xml;
 /// </summary>
 public class UIEditor : EditorWindow
 {
-    //GUI Function options
+    class UICouple
+    {
+        public GameObject portrait;
+        public GameObject landscape;
+        public List<string> console;
+
+        public UICouple()
+        {
+            portrait = null;
+            landscape = null;
+            console = new List<string>();
+        }
+    }
+
     private int function = 0;
-    private int[] funcValueOptions = new int[] { 0, 1, 2 };
+    private int[] funcValueOptions = new int[] { 0, 1, 2, 3 };
     private string[] funcDisplayOptions = new string[]
     { 
         "Batching Rename", 
         "Batching Destroy", 
-        "Generate Config"
+        "Generate Config",
+        "Compare",
     };
-   
-    private List<string> consoleList = new List<string>();
-    private List<Transform> selectionList = new List<Transform>();
-    private XmlDocument xmlDoc = new XmlDocument();
-    private string xmlPath = "";
-    
-    private GameObject portObject;
-    private GameObject landObject;
 
-    private List<GameObject> GameObjectList = new List<GameObject>();
+    private string xmlPath = "";
+    private XmlDocument xmlDoc = new XmlDocument();
+    private List<string> consoleList = new List<string>();
+    private List<UICouple> coupleList = new List<UICouple>();
     private string killComponentName = "";
     private Vector2 mScroll;
 
@@ -46,39 +55,32 @@ public class UIEditor : EditorWindow
 
     void OnEnable()
     {
-        GameObjectList.Add(null);
-        GameObjectList.Add(null);
+        coupleList.Add(new UICouple());
     }
 
     void OnGUI()
     {
-        GUILayout.Space(3);      
-        GUILayout.Label("Please Select One Function Below: ");
-        function = EditorGUILayout.IntPopup(function, funcDisplayOptions, funcValueOptions, GUILayout.Width(120));
-
         GUILayout.Space(10);
-        GUILayout.Label("**************************************************************");
+        GUILayout.BeginHorizontal();
+        GUILayout.Label("Please Select One Function Below: ", GUILayout.Width(230));
+        function = EditorGUILayout.IntPopup(function, funcDisplayOptions, funcValueOptions, GUILayout.Width(120));
+        GUILayout.EndHorizontal();
+        GUILayout.Space(10);
 
-        if (function == 0)
-        {
-            BatchingRename();
-        }
-        else if (function == 1)
-        {
-            BatchingDestroy();
-        }
-        else if (function == 2)
-        {
-            GenerateConfig();
-        }
+        if (function == 0) BatchingRename();
+        else if (function == 1) BatchingDestroy();
+        else if (function == 2) GenerateConfig();
+        else if (function == 3) Compare();
     }
 
 
     /// <summary>
     /// Batching rename the select transforms.
     /// </summary>   
-    private void BatchingRename()
+    public void BatchingRename()
     {
+        EditorGUILayout.HelpBox("Description: Batching rename make sure the name of child unique.", MessageType.Info);
+
         int index = 0;
         int count = Selection.transforms.Length;
 
@@ -127,8 +129,10 @@ public class UIEditor : EditorWindow
     /// <summary>
     /// Batching destroy specify component of the seleced transforms.
     /// </summary>
-    void BatchingDestroy()
+    public void BatchingDestroy()
     {
+        EditorGUILayout.HelpBox("Description: Batching rename make sure the name of child unique.", MessageType.Info);
+
         int index = 0;
         int count = Selection.transforms.Length;
 
@@ -175,42 +179,34 @@ public class UIEditor : EditorWindow
     }
 
 
-    private void GenerateConfig()
+    public void GenerateConfig()
     {
+        EditorGUILayout.HelpBox("Description: Batching rename make sure the name of child unique.", MessageType.Info);
+
         GUILayout.Label("XML File: " + xmlPath);
         bool open = GUILayout.Button("Open");
-        bool export =GUILayout.Button("Export");
+        bool export = GUILayout.Button("Export");
 
-        if (open)
-        {
-            xmlPath = EditorUtility.OpenFilePanel("", "", "xml");
-        }
-
-        if(export)
-        {
-            Export();
-        }
+        if (open) xmlPath = EditorUtility.OpenFilePanel("", "", "xml");
+        if (export) Export();
 
         GUILayout.Space(10.0f);
         EditorGUIUtility.labelWidth = 80.0f;
 
         mScroll = EditorGUILayout.BeginScrollView(mScroll);
-        for (int i = 0; i+1 < GameObjectList.Count; i=i+2)
+        for (int i = 0; i < coupleList.Count; i++)
         {
             GUILayout.BeginHorizontal();
-            GameObjectList[i] = (GameObject)EditorGUILayout.ObjectField("Portrait", GameObjectList[i], typeof(UnityEngine.GameObject), true, GUILayout.Width(230));
+            coupleList[i].portrait = (GameObject)EditorGUILayout.ObjectField("Portrait", coupleList[i].portrait, typeof(GameObject), true, GUILayout.Width(230));
             GUILayout.Space(10.0f);
-            GameObjectList[i+1] = (GameObject)EditorGUILayout.ObjectField("Landscape", GameObjectList[i+1], typeof(UnityEngine.GameObject), true, GUILayout.Width(230));
-            if(GUILayout.Button("-"))
-            {
-                GameObjectList.RemoveRange(i, 2);
-            }
-            if(GUILayout.Button("+"))
-            {
-                GameObjectList.Add(null);
-                GameObjectList.Add(null);
-            }
+            coupleList[i].landscape = (GameObject)EditorGUILayout.ObjectField("Landscape", coupleList[i].landscape, typeof(GameObject), true, GUILayout.Width(230));
+            if (GUILayout.Button("-")) coupleList.RemoveAt(i);
+            if (GUILayout.Button("+")) coupleList.Add(new UICouple());
             GUILayout.EndHorizontal();
+            foreach(string item in coupleList[i].console)
+            {
+                GUILayout.Label(item);
+            }
         }
         EditorGUILayout.EndScrollView();
     }
@@ -222,8 +218,9 @@ public class UIEditor : EditorWindow
             consoleList.Add("error: file path of xml is incorrect!");
             return;
         }
+
         xmlDoc.Load(xmlPath);
-        ExportXML(portObject, landObject);
+        foreach (UICouple item in coupleList)  ExportXML(item.portrait, item.landscape);
     }
 
     private void ExportXML(GameObject portrait, GameObject landscape)
@@ -241,9 +238,9 @@ public class UIEditor : EditorWindow
             docElement.RemoveChild(node);
         }
 
-        XmlElement portraitElement = xmlDoc.CreateElement(portrait.name);
+        XmlElement portraitElement = xmlDoc.CreateElement(portrait.name + "-P");
         portraitElement.SetAttribute("pos", portrait.transform.localPosition.ToString());
-        XmlElement landscapeElement = xmlDoc.CreateElement(landscape.name);
+        XmlElement landscapeElement = xmlDoc.CreateElement(portrait.name + "-L");
         landscapeElement.SetAttribute("pos", landscape.transform.localPosition.ToString());
 
         docElement.AppendChild(portraitElement);
@@ -297,14 +294,14 @@ public class UIEditor : EditorWindow
             {
                 if (sprite1.width != sprite2.width)
                 {
-                    porChildNode.SetAttribute("sprite_size_width", sprite1.width.ToString());
-                    landChildNode.SetAttribute("sprite_size_width", sprite2.width.ToString());
+                    porChildNode.SetAttribute("sprite_width", sprite1.width.ToString());
+                    landChildNode.SetAttribute("sprite_width", sprite2.width.ToString());
                 }
 
                 if (sprite1.height != sprite2.height)
                 {
-                    porChildNode.SetAttribute("sprite_size_height", sprite1.height.ToString());
-                    landChildNode.SetAttribute("sprite_size_height", sprite2.height.ToString());
+                    porChildNode.SetAttribute("sprite_height", sprite1.height.ToString());
+                    landChildNode.SetAttribute("sprite_height", sprite2.height.ToString());
                 }
 
             }
@@ -313,8 +310,8 @@ public class UIEditor : EditorWindow
             {
                 if (t1.GetComponent<UIWidget>().depth != t2.GetComponent<UIWidget>().depth)
                 {
-                    porChildNode.SetAttribute("widget_depth", t1.GetComponent<UIWidget>().depth.ToString());
-                    landChildNode.SetAttribute("widget_depth", t2.GetComponent<UIWidget>().depth.ToString());
+                    porChildNode.SetAttribute("depth", t1.GetComponent<UIWidget>().depth.ToString());
+                    landChildNode.SetAttribute("depth", t2.GetComponent<UIWidget>().depth.ToString());
                 }
             }
 
@@ -324,29 +321,56 @@ public class UIEditor : EditorWindow
         }
     }
 
-    private void Compare()
+    public void Compare()
     {
-        consoleList.Clear();
-        CompareBasePortrait(portObject.transform, "");
+        EditorGUILayout.HelpBox("Description: Description : Batching rename make sure the name of child unique.", MessageType.Info);
+
+        bool compare = GUILayout.Button("Compare");
+        if (compare)
+        {
+            foreach (UICouple item in coupleList)
+            {
+                item.console.Clear();
+                CompareBasePortrait(item.portrait.transform, item.landscape.transform, item.console, string.Empty);
+            }
+        }
+
+        GUILayout.Space(10.0f);
+        EditorGUIUtility.labelWidth = 80.0f;
+
+        mScroll = EditorGUILayout.BeginScrollView(mScroll);
+        for (int i = 0; i < coupleList.Count; i++)
+        {
+            GUILayout.BeginHorizontal();
+            coupleList[i].portrait = (GameObject)EditorGUILayout.ObjectField("Portrait", coupleList[i].portrait, typeof(GameObject), true, GUILayout.Width(230));
+            GUILayout.Space(10.0f);
+            coupleList[i].landscape = (GameObject)EditorGUILayout.ObjectField("Landscape", coupleList[i].landscape, typeof(GameObject), true, GUILayout.Width(230));
+            if (GUILayout.Button("-")) { coupleList.RemoveAt(i); continue; }
+            if (GUILayout.Button("+")) coupleList.Add(new UICouple());
+            GUILayout.EndHorizontal();
+            foreach (string item in coupleList[i].console)
+            {
+                GUILayout.Label(item);
+            }
+        }
+        EditorGUILayout.EndScrollView();
     }
 
-    private void CompareBasePortrait(Transform portrait, string path)
+    private void CompareBasePortrait(Transform portrait, Transform landscape, List<string> console, string path)
     {
-        for(int i=0, imax=portrait.childCount; i < imax; i++)
-        {   
-            Transform portChild = portrait.GetChild(i);
+        for(int i=0, imax = portrait.transform.childCount; i < imax; i++)
+        {
+            Transform portChild = portrait.transform.GetChild(i);
             string relativePath = path + portChild.name;
-            Transform landChild = landObject.transform.Find(relativePath);
-
+            Transform landChild = landscape.transform.Find(relativePath);
             if(landChild == null)
             {
-                consoleList.Add(string.Format("child is null: {0}", relativePath));
+                console.Add(string.Format("child is null: {0}", relativePath));
                 continue;
             }
-
             if (portChild.name != landChild.name)
             {
-                consoleList.Add(string.Format("name not equal: {0}", relativePath));
+                console.Add(string.Format("name not equal: {0}", relativePath));
                 continue;
             }
 
@@ -356,32 +380,28 @@ public class UIEditor : EditorWindow
             {
                 if (landSprite == null)
                 {
-                    consoleList.Add(string.Format("sprite is null: {0}", relativePath));
+                    console.Add(string.Format("sprite is null: {0}", relativePath));
                     continue;
                 }
-                
                 if (portSprite.atlas != landSprite.atlas)
                 {
-                    consoleList.Add(string.Format("atlas not equal: {0}", relativePath));
+                    console.Add(string.Format("atlas not equal: {0}", relativePath));
                     continue;
                 }
-
                 if (portSprite.spriteName != landSprite.spriteName)
                 {
-                    consoleList.Add(string.Format("spriteName not equal: {0}", relativePath));
+                    console.Add(string.Format("spriteName not equal: {0}", relativePath));
                     continue;
                 }
-
                 if(portSprite.rawPivot != landSprite.rawPivot)
                 {
-                    consoleList.Add(string.Format("Pivot not equal: {0}", relativePath));
+                    console.Add(string.Format("Pivot not equal: {0}", relativePath));
                     continue;
                 }
             }
-
             if(portChild.childCount > 0)
             {
-                CompareBasePortrait(portChild, relativePath + "/");
+                CompareBasePortrait(portChild, landscape,console, relativePath + "/");
             }
         }
     }
