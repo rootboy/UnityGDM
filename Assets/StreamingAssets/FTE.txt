@@ -1,4 +1,4 @@
-"1“Ù∆µ" : 
+"1" : 
 {
 	"type" : "OnGameStart",
 	"step":

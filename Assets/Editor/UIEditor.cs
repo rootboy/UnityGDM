@@ -20,7 +20,7 @@ public class UIEditor : EditorWindow
     { 
         "Batching Rename", 
         "Batching Destroy", 
-        "Generate Config"
+        "Generate Config",
     };
    
     private List<string> consoleList = new List<string>();
@@ -57,7 +57,6 @@ public class UIEditor : EditorWindow
         function = EditorGUILayout.IntPopup(function, funcDisplayOptions, funcValueOptions, GUILayout.Width(120));
 
         GUILayout.Space(10);
-        GUILayout.Label("**************************************************************");
 
         if (function == 0)
         {
@@ -80,7 +79,7 @@ public class UIEditor : EditorWindow
     private void BatchingRename()
     {
         int index = 0;
-        int count = Selection.transforms.Length;
+        int count = Selection.gameObjects.Length;
 
         if (count == 0)
             EditorGUILayout.HelpBox("You must select at least one transform first!", MessageType.Warning);
@@ -91,11 +90,13 @@ public class UIEditor : EditorWindow
 
         if(rename)
         {
-            foreach (Transform item in Selection.transforms) Rename(item);
+            foreach (GameObject item in Selection.gameObjects) 
+                Rename(item.transform);
+            EditorUtility.DisplayDialog("", "Rename Complete!", "OK");
         }
 
         mScroll = GUILayout.BeginScrollView(mScroll);
-        foreach(Transform item in Selection.transforms)
+        foreach(GameObject item in Selection.gameObjects)
         {
             GUILayout.Label(string.Format("{0}\t\t{1}", index, item.name));
             index++;
@@ -215,6 +216,7 @@ public class UIEditor : EditorWindow
         EditorGUILayout.EndScrollView();
     }
 
+
     private void Export()
     {
         if (string.IsNullOrEmpty(xmlPath))
@@ -225,6 +227,7 @@ public class UIEditor : EditorWindow
         xmlDoc.Load(xmlPath);
         ExportXML(portObject, landObject);
     }
+
 
     private void ExportXML(GameObject portrait, GameObject landscape)
     {
@@ -252,6 +255,7 @@ public class UIEditor : EditorWindow
         xmlDoc.Save(xmlPath);
     }
 
+
     private void ExportXMLRecursively(GameObject go, XmlNode parent)
     {
         for (int i = 0; i < go.transform.childCount; i++)
@@ -265,6 +269,7 @@ public class UIEditor : EditorWindow
             if (t.childCount > 0) ExportXMLRecursively(t.gameObject, child);
         }
     }
+
 
     private void ExportXMLRecursivelyComparative(Transform porTrans, Transform landTrans, XmlNode porParentNode, XmlNode landParentNode)
     {

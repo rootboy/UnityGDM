@@ -18,6 +18,13 @@ public interface IFTEBuddy
 /// </summary>
 public sealed class FTE : Singleton<FTE> 
 {
+    public enum FTEType
+    {
+        OnGameStart,
+        OnTaskGet,
+        OnTaskFinish,
+    }
+
     private class FTEStep
     {
         public string content;
@@ -45,25 +52,33 @@ public sealed class FTE : Singleton<FTE>
     }
 
     /// <summary>
-    /// The only interface exposed, called by FTE buddy or self.
+    /// Trigger the FTE by specific operation.
     /// </summary>
     public void Trigger(IFTEBuddy buddy, GameObject go, string param)
     {
         if (isRunning)
         {
-            if(go == null && param == null)
+            if(go.name == mCurrentStep.targetName && param == mCurrentStep.param)
             {
-                Display();
-            }
-            else if(go.name == mCurrentStep.targetName && param == mCurrentStep.param)
-            {
+                Hide();
                 NextStep();
             }           
         }
     }
 
     /// <summary>
-    /// This function is called when some event is triggered.
+    /// Trigger the FTE by FTEType.
+    /// </summary>
+    public void Trigger(FTEType type)
+    {
+        if(isRunning)
+        {
+            Display();
+        }
+    }
+
+    /// <summary>
+    /// This function is called when FTE event is triggered.
     /// </summary>
     private void OnGuideStart()
     {
@@ -73,7 +88,7 @@ public sealed class FTE : Singleton<FTE>
     }
 
     /// <summary>
-    /// 
+    /// This funciton is called when FTE ends. 
     /// </summary>
     private void OnGuideEnd()
     {
