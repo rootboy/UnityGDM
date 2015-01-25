@@ -7,7 +7,7 @@ namespace GDM
 	{
 		[ExecuteInEditMode]
 		[RequireComponent(typeof(Camera))]
-		public class VertMinusCameraFOV  : MonoBehaviour
+        public class VertMinusFOV : MonoBehaviour
 		{
 			public float manualFOV = 60;
 			public int manualWidth = 640;
@@ -15,13 +15,11 @@ namespace GDM
 
 			float hFOVInRads;
 
-
 			void Start(){
 				float aspectRatio = (float) manualWidth / (float) manualHeight;
 				float vFOVInRads = manualFOV * Mathf.Deg2Rad;
 				hFOVInRads = 2f * Mathf.Atan( Mathf.Tan(vFOVInRads/2f) * aspectRatio);
 			}
-
 
 			void Update(){
 				if(manualHeight != Screen.height  || manualWidth != Screen.width){
