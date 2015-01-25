@@ -3,8 +3,9 @@ using System.Collections;
 using GDM.UI;
 
 
-public class UIExample : UIBase, IFTEBuddy
+public class UIExample : UIBase
 {
+
     protected override void OnAwake()
     {
 
@@ -38,10 +39,5 @@ public class UIExample : UIBase, IFTEBuddy
     protected override void RegisterEvent()
     {
         base.RegisterEvent();
-    }
-
-    public void OnFTETrigger(IFTEBuddy buddy, GameObject go, string param)
-    {
-        FTE.Instance.Trigger(buddy, go, param);
     }
 }
