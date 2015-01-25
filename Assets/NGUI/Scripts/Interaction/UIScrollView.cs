@@ -72,7 +72,7 @@ public class UIScrollView : MonoBehaviour
 	public bool smoothDragStart = true;
 
 	/// <summary>
-	/// Whether to use iOS drag emulation, where the content only drags at half the speed of the touch/mouse movement when the content edge is within the clipping area.
+	/// Whether to use iOS drag emulation, where the style only drags at half the speed of the touch/mouse movement when the style edge is within the clipping area.
 	/// </summary>	
 	
 	public bool iOSDragEmulation = true;

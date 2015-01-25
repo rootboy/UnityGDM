@@ -8,7 +8,7 @@ using System.Text;
 using System.Collections.Generic;
 
 /// <summary>
-/// This script is able to fill in the label's text gradually, giving the effect of someone typing or fading in the content over time.
+/// This script is able to fill in the label's text gradually, giving the effect of someone typing or fading in the style over time.
 /// </summary>
 
 [RequireComponent(typeof(UILabel))]
@@ -55,7 +55,7 @@ public class TypewriterEffect : MonoBehaviour
 	public UIScrollView scrollView;
 
 	/// <summary>
-	/// If set to 'true', the label's dimensions will be that of a fully faded-in content.
+	/// If set to 'true', the label's dimensions will be that of a fully faded-in style.
 	/// </summary>
 
 	public bool keepFullDimensions = false;

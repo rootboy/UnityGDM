@@ -59,7 +59,7 @@ public class UIDrawCall : MonoBehaviour
 	Material		mMaterial;		// Material used by this draw call
 	Texture			mTexture;		// Main texture used by the material
 	Shader			mShader;		// Shader used by the dynamically created material
-	int				mClipCount = 0;	// Number of times the draw call's content is getting clipped
+	int				mClipCount = 0;	// Number of times the draw call's style is getting clipped
 	Transform		mTrans;			// Cached transform
 	Mesh			mMesh;			// First generated mesh
 	MeshFilter		mFilter;		// Mesh filter for this draw call

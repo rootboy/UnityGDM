@@ -40,7 +40,7 @@ public class UILabel : UIWidget
 	}
 
 	/// <summary>
-	/// Whether the label will keep its content crisp even when shrunk.
+	/// Whether the label will keep its style crisp even when shrunk.
 	/// You may want to turn this off on mobile devices.
 	/// </summary>
 
@@ -592,7 +592,7 @@ public class UILabel : UIWidget
 	}
 
 	/// <summary>
-	/// Overflow method controls the label's behaviour when its content doesn't fit the bounds.
+	/// Overflow method controls the label's behaviour when its style doesn't fit the bounds.
 	/// </summary>
 
 	public Overflow overflowMethod
@@ -1744,7 +1744,7 @@ public class UILabel : UIWidget
 #if DYNAMIC_FONT
 		NGUIText.dynamicFont = null;
 #endif
-		// Center the content within the label vertically
+		// Center the style within the label vertically
 		Vector2 pos = ApplyOffset(verts, start);
 
 		// Effects don't work with packed fonts

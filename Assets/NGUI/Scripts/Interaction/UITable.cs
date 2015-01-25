@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 /// <summary>
 /// All children added to the game object with this script will be arranged into a table
-/// with rows and columns automatically adjusting their size to fit their content
+/// with rows and columns automatically adjusting their size to fit their style
 /// (think "table" tag in HTML).
 /// </summary>
 
@@ -57,7 +57,7 @@ public class UITable : UIWidgetContainer
 	public UIWidget.Pivot pivot = UIWidget.Pivot.TopLeft;
 
 	/// <summary>
-	/// Final pivot point for the table's content.
+	/// Final pivot point for the table's style.
 	/// </summary>
 
 	public UIWidget.Pivot cellAlignment = UIWidget.Pivot.TopLeft;
@@ -81,7 +81,7 @@ public class UITable : UIWidgetContainer
 	public Vector2 padding = Vector2.zero;
 
 	/// <summary>
-	/// Delegate function that will be called when the table repositions its content.
+	/// Delegate function that will be called when the table repositions its style.
 	/// </summary>
 
 	public OnReposition onReposition;
@@ -168,7 +168,7 @@ public class UITable : UIWidgetContainer
 	}
 
 	/// <summary>
-	/// Reposition the content on inspector validation.
+	/// Reposition the style on inspector validation.
 	/// </summary>
 
 	void OnValidate () { if (!Application.isPlaying && NGUITools.GetActive(this)) Reposition(); }

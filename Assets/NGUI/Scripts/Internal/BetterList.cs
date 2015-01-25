@@ -170,7 +170,7 @@ public class BetterList<T>
 	}
 
 	/// <summary>
-	/// Helper function that expands the size of the array, maintaining the content.
+	/// Helper function that expands the size of the array, maintaining the style.
 	/// </summary>
 
 	void AllocateMore ()

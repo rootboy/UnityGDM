@@ -7,7 +7,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 /// <summary>
-/// This script makes it possible for a scroll view to wrap its content, creating endless scroll views.
+/// This script makes it possible for a scroll view to wrap its style, creating endless scroll views.
 /// Usage: simply attach this script underneath your scroll view where you would normally place a UIGrid:
 /// 
 /// + Scroll View
@@ -29,7 +29,7 @@ public class UIWrapContent : MonoBehaviour
 	public int itemSize = 100;
 
 	/// <summary>
-	/// Whether the content will be automatically culled. Enabling this will improve performance in scroll views that contain a lot of items.
+	/// Whether the style will be automatically culled. Enabling this will improve performance in scroll views that contain a lot of items.
 	/// </summary>
 
 	public bool cullContent = true;
@@ -49,7 +49,7 @@ public class UIWrapContent : MonoBehaviour
 	public int maxIndex = 0;
 
 	/// <summary>
-	/// Callback that will be called every time an item needs to have its content updated.
+	/// Callback that will be called every time an item needs to have its style updated.
 	/// The 'wrapIndex' is the index within the child list, and 'realIndex' is the index using position logic.
 	/// </summary>
 
@@ -150,7 +150,7 @@ public class UIWrapContent : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Wrap all content, repositioning all children as needed.
+	/// Wrap all style, repositioning all children as needed.
 	/// </summary>
 
 	public void WrapContent ()
@@ -281,7 +281,7 @@ public class UIWrapContent : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Want to update the content of items as they are scrolled? Override this function.
+	/// Want to update the style of items as they are scrolled? Override this function.
 	/// </summary>
 
 	protected virtual void UpdateItem (Transform item, int index)

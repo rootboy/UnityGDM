@@ -5,17 +5,10 @@
 	{
 		"1" : 
 		{
-			"content": "UIGuide",
+			"style": "UIGuide",
 			"targetName": "Button_Menu",
 			"targetParam" : "",
-		},
-		"2" :
-		{
-		
-		},
-		"3" :
-		{
-		
+			"targetAction" : "OnClick"
 		}
 	}
 }

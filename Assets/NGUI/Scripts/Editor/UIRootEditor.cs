@@ -49,7 +49,7 @@ public class UIRootEditor : Editor
 			{
 				if (fitWidth)
 				{
-					EditorGUILayout.HelpBox("Whatever you create within the content frame (blue outline) will always be visible, regardless of the screen's aspect ratio." +
+					EditorGUILayout.HelpBox("Whatever you create within the style frame (blue outline) will always be visible, regardless of the screen's aspect ratio." +
 						"\n\nThink of it as choosing the 'Fit' desktop background style.", MessageType.Info);
 				}
 				else
@@ -65,7 +65,7 @@ public class UIRootEditor : Editor
 			}
 			else
 			{
-				EditorGUILayout.HelpBox("Your UI within the content frame (blue outline) will always fill the screen, and edges will be cropped based on the aspect ratio." +
+				EditorGUILayout.HelpBox("Your UI within the style frame (blue outline) will always fill the screen, and edges will be cropped based on the aspect ratio." +
 					"\n\nThink of it as choosing the 'Fill' desktop background style.", MessageType.Info);
 			}
 		}

@@ -1322,7 +1322,7 @@ public static class NGUIEditorTools
 	}
 
 	/// <summary>
-	/// Begin drawing the content area.
+	/// Begin drawing the style area.
 	/// </summary>
 
 	static public void BeginContents () { BeginContents(NGUISettings.minimalisticLook); }
@@ -1330,7 +1330,7 @@ public static class NGUIEditorTools
 	static bool mEndHorizontal = false;
 
 	/// <summary>
-	/// Begin drawing the content area.
+	/// Begin drawing the style area.
 	/// </summary>
 
 	static public void BeginContents (bool minimalistic)
@@ -1352,7 +1352,7 @@ public static class NGUIEditorTools
 	}
 
 	/// <summary>
-	/// End drawing the content area.
+	/// End drawing the style area.
 	/// </summary>
 
 	static public void EndContents ()

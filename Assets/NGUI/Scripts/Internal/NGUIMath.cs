@@ -1111,9 +1111,9 @@ static public class NGUIMath
 	/// Helper function that can set the transform's position to be at the specified world position.
 	/// Ideal usage: positioning a UI element to be directly over a 3D point in space.
 	/// </summary>
-	/// <param name="worldPos">World position, visible by the worldCam</param>
-	/// <param name="worldCam">Camera that is able to see the worldPos</param>
-	/// <param name="myCam">Camera that is able to see the transform this function is called on</param>
+	/// <targetParam name="worldPos">World position, visible by the worldCam</targetParam>
+	/// <targetParam name="worldCam">Camera that is able to see the worldPos</targetParam>
+	/// <targetParam name="myCam">Camera that is able to see the transform this function is called on</targetParam>
 
 	static public void OverlayPosition (this Transform trans, Vector3 worldPos, Camera worldCam, Camera myCam)
 	{
@@ -1127,8 +1127,8 @@ static public class NGUIMath
 	/// Helper function that can set the transform's position to be at the specified world position.
 	/// Ideal usage: positioning a UI element to be directly over a 3D point in space.
 	/// </summary>
-	/// <param name="worldPos">World position, visible by the worldCam</param>
-	/// <param name="worldCam">Camera that is able to see the worldPos</param>
+	/// <targetParam name="worldPos">World position, visible by the worldCam</targetParam>
+	/// <targetParam name="worldCam">Camera that is able to see the worldPos</targetParam>
 
 	static public void OverlayPosition (this Transform trans, Vector3 worldPos, Camera worldCam)
 	{
@@ -1140,7 +1140,7 @@ static public class NGUIMath
 	/// Helper function that can set the transform's position to be over the specified target transform.
 	/// Ideal usage: positioning a UI element to be directly over a 3D object in space.
 	/// </summary>
-	/// <param name="target">Target over which the transform should be positioned</param>
+	/// <targetParam name="target">Target over which the transform should be positioned</targetParam>
 
 	static public void OverlayPosition (this Transform trans, Transform target)
 	{

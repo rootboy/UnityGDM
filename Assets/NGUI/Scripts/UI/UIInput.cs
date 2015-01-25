@@ -1232,7 +1232,7 @@ public class UIInput : MonoBehaviour
 				// Append the text from the selection onwards
 				processed = left + processed.Substring(selPos, processed.Length - selPos);
 
-				// Clamped content needs to be adjusted further
+				// Clamped style needs to be adjusted further
 				if (selected && label.overflowMethod == UILabel.Overflow.ClampContent && label.maxLineCount == 1)
 				{
 					// Determine what will actually fit into the given line

@@ -10,8 +10,8 @@ namespace GDM
             /// <summary>
             /// Add a child to parent, keep the value of transform equally.
             /// </summary>
-            /// <param name="child"></param>
-            /// <param name="parent"></param>
+            /// <targetParam name="child"></targetParam>
+            /// <targetParam name="parent"></targetParam>
             public static void AddChild(Transform child, Transform parent)
             {
                 Vector3 pos = child.localPosition;
@@ -28,8 +28,8 @@ namespace GDM
             /// <summary>
             /// Add a child to parent, keep the value of transform equally.
             /// </summary>
-            /// <param name="child"></param>
-            /// <param name="parent"></param>
+            /// <targetParam name="child"></targetParam>
+            /// <targetParam name="parent"></targetParam>
             public static void AddChild(GameObject child, GameObject parent)
             {
                 AddChild(child.transform, parent.transform);

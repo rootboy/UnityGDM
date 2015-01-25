@@ -6,7 +6,7 @@
 using UnityEngine;
 
 /// <summary>
-/// Example script that resizes the widget it's attached to in order to envelop the target content.
+/// Example script that resizes the widget it's attached to in order to envelop the target style.
 /// </summary>
 
 [RequireComponent(typeof(UIWidget))]

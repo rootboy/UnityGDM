@@ -15,6 +15,9 @@ public interface IFTEBuddy
 
 /// <summary>
 /// FTE(First Teching Experience) Manager, known as Beginner's guide.
+/// Two Keys of FTE Design:
+/// 1.FTE appearing time.
+/// 2.FTE desired action.
 /// </summary>
 public sealed class FTE : Singleton<FTE> 
 {
@@ -27,9 +30,10 @@ public sealed class FTE : Singleton<FTE>
 
     private class FTEStep
     {
-        public string content;
+        public int style;
         public string targetName;
-        public string param;
+        public string targetParam;
+        public string targetAction;
     }
 
     private class FTEInfo
@@ -39,11 +43,11 @@ public sealed class FTE : Singleton<FTE>
     }
 
     private Dictionary<int, FTEInfo> mDicFTE = new Dictionary<int, FTEInfo>();
+    private int mFTEId;
     private FTEInfo mCurrentFTE;
     private FTEStep mCurrentStep;
     private bool isNeedMask;
     private bool isRunning;
-    private int mFTEId;
     private GameObject uiGuide;
 
     void Awake()
@@ -52,29 +56,23 @@ public sealed class FTE : Singleton<FTE>
     }
 
     /// <summary>
-    /// Trigger the FTE by specific operation.
+    /// Trigger the FTE by specific action to increase the FTEStep.
     /// </summary>
-    public void Trigger(IFTEBuddy buddy, GameObject go, string param)
+    public void Trigger(IFTEBuddy buddy, GameObject go, string param, string action)
     {
-        if (isRunning)
+        if(go.name == mCurrentStep.targetName && param == mCurrentStep.targetParam
+            && action == mCurrentStep.targetAction)
         {
-            if(go.name == mCurrentStep.targetName && param == mCurrentStep.param)
-            {
-                Hide();
-                NextStep();
-            }           
-        }
+            NextStep();
+        }           
     }
-
+    
     /// <summary>
-    /// Trigger the FTE by FTEType.
+    /// Trigger tht FTE to startup.
     /// </summary>
     public void Trigger(FTEType type)
     {
-        if(isRunning)
-        {
-            Display();
-        }
+        OnGuideStart();
     }
 
     /// <summary>
@@ -106,7 +104,6 @@ public sealed class FTE : Singleton<FTE>
             OnGuideEnd();
             return;
         }
-        
         mCurrentStep = mCurrentFTE.steps[mCurrentFTE.stepIndex];
         StartCoroutine("WaitForTarget");
     }
@@ -123,31 +120,26 @@ public sealed class FTE : Singleton<FTE>
     }
 
     /// <summary>
-    /// Display the ui guide.
-    /// </summary>
-    private void Display()
-    {
-        UIManager.instance.Show(mCurrentStep.content, mCurrentStep.param);
-    }
-
-    /// <summary>
     /// 
     /// </summary>
     private void Hide()
     {
-        UIManager.instance.DestroyUI(mCurrentStep.content);
     }
 
-    /// <summary>
-    /// Guarantee the target is stable.
-    /// </summary>
-    private IEnumerator WaitForTarget()
+
+    private void Display()
     {
-        while (!UIManager.instance.IsVisible(mCurrentStep.targetName) || 
-            !UIManager.instance.IsStatic(mCurrentStep.targetName))
+        int style = mCurrentStep.style;
+        switch(style)
         {
-            yield return new WaitForSeconds(0.2f);
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            default:
+                break;
         }
-        Trigger(null, null, null);
     }
 }

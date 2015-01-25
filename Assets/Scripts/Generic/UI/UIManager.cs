@@ -16,7 +16,7 @@ namespace GDM
             /// <summary>
             /// Create a new ui, convenience function.
             /// </summary>
-            /// <param name="name"></param>
+            /// <targetParam name="name"></targetParam>
             /// <returns></returns>
             public bool CreateUI(string name)
             {
@@ -27,8 +27,8 @@ namespace GDM
             /// <summary>
             /// Create a new ui, convenience function.
             /// </summary>
-            /// <param name="name"></param>
-            /// <param name="param"></param>
+            /// <targetParam name="name"></targetParam>
+            /// <targetParam name="targetParam"></targetParam>
             /// <returns></returns>
             public bool CreateUI(string name, object param)
             {
@@ -39,8 +39,8 @@ namespace GDM
             /// <summary>
             /// Create a new ui.
             /// </summary>
-            /// <param name="name"></param>
-            /// <param name="param"></param>
+            /// <targetParam name="name"></targetParam>
+            /// <targetParam name="targetParam"></targetParam>
             /// <returns></returns>
             public GameObject CreateUI(string name, object param, bool isVisible)
             {
@@ -68,7 +68,7 @@ namespace GDM
             /// <summary>
             /// Destroy a ui.
             /// </summary>
-            /// <param name="name"></param>
+            /// <targetParam name="name"></targetParam>
             public void DestroyUI(string name)
             {
                 if (mDicUis.ContainsKey(name))
@@ -97,8 +97,8 @@ namespace GDM
             /// <summary>
             /// Display a ui and pass a parameter.
             /// </summary>
-            /// <param name="name"></param>
-            /// <param name="param"></param>
+            /// <targetParam name="name"></targetParam>
+            /// <targetParam name="targetParam"></targetParam>
             /// <returns></returns>
             public void Show(string name, object param)
             {
@@ -121,8 +121,8 @@ namespace GDM
             /// <summary>
             /// Hide a ui and pass a parameter.
             /// </summary>
-            /// <param name="name"></param>
-            /// <param name="param"></param>
+            /// <targetParam name="name"></targetParam>
+            /// <targetParam name="targetParam"></targetParam>
             /// <returns></returns>
             public bool Hide(string name, object param)
             {
@@ -165,7 +165,7 @@ namespace GDM
             /// <summary>
             /// Is the ui where on the relativePath visible?
             /// </summary>
-            /// <param name="name"></param>
+            /// <targetParam name="name"></targetParam>
             /// <returns></returns>
             public bool IsVisible(string relativePath)
             {
@@ -179,7 +179,7 @@ namespace GDM
             /// <summary>
             /// Is the ui where on the relative static(No tween component running)?
             /// </summary>
-            /// <param name="relativePath"></param>
+            /// <targetParam name="relativePath"></targetParam>
             /// <returns></returns>
             public bool IsStatic(string relativePath)
             {

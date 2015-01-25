@@ -190,7 +190,7 @@ public class NGUIJson
 	/// <summary>
 	/// Parses the string json into a value
 	/// </summary>
-	/// <param name="json">A JSON string.</param>
+	/// <targetParam name="json">A JSON string.</targetParam>
 	/// <returns>An ArrayList, a Hashtable, a double, a string, null, true, or false</returns>
 	public static object jsonDecode( string json )
 	{
@@ -221,7 +221,7 @@ public class NGUIJson
 	/// <summary>
 	/// Converts a Hashtable / ArrayList / Dictionary(string,string) object into a JSON string
 	/// </summary>
-	/// <param name="json">A Hashtable / ArrayList</param>
+	/// <targetParam name="json">A Hashtable / ArrayList</targetParam>
 	/// <returns>A JSON encoded string, or null if object 'json' is not serializable</returns>
 	public static string jsonEncode( object json )
 	{

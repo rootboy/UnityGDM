@@ -117,7 +117,7 @@ public class UIDragObject : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Recalculate the bounds of the dragged content.
+	/// Recalculate the bounds of the dragged style.
 	/// </summary>
 
 	void UpdateBounds ()

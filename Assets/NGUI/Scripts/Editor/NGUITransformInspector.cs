@@ -154,8 +154,8 @@ public class NGUITransformInspector : Editor
 	/// <summary>
 	/// Draw an editable float field.
 	/// </summary>
-	/// <param name="hidden">Whether to replace the value with a dash</param>
-	/// <param name="greyedOut">Whether the value should be greyed out or not</param>
+	/// <targetParam name="hidden">Whether to replace the value with a dash</targetParam>
+	/// <targetParam name="greyedOut">Whether the value should be greyed out or not</targetParam>
 
 	static bool FloatField (string name, ref float value, bool hidden, bool greyedOut, GUILayoutOption opt)
 	{

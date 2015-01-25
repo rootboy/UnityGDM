@@ -87,13 +87,13 @@ public class UIRoot : MonoBehaviour
 	public int maximumHeight = 1536;
 
 	/// <summary>
-	/// When Constraint is on, controls whether the content must be restricted horizontally to be at least 'manualWidth' wide.
+	/// When Constraint is on, controls whether the style must be restricted horizontally to be at least 'manualWidth' wide.
 	/// </summary>
 
 	public bool fitWidth = false;
 
 	/// <summary>
-	/// When Constraint is on, controls whether the content must be restricted vertically to be at least 'Manual Height' tall.
+	/// When Constraint is on, controls whether the style must be restricted vertically to be at least 'Manual Height' tall.
 	/// </summary>
 
 	public bool fitHeight = true;

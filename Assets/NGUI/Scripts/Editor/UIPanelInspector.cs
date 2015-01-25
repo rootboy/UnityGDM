@@ -621,7 +621,7 @@ public class UIPanelInspector : UIRectEditor
 
 			GUILayout.BeginHorizontal();
 			NGUIEditorTools.DrawProperty("Padding", serializedObject, "softBorderPadding", GUILayout.Width(100f));
-			GUILayout.Label("Soft border pads content", GUILayout.MinWidth(20f));
+			GUILayout.Label("Soft border pads style", GUILayout.MinWidth(20f));
 			GUILayout.EndHorizontal();
 
 			GUILayout.BeginHorizontal();

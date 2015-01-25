@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 /// <summary>
 /// All children added to the game object with this script will be repositioned to be on a grid of specified dimensions.
-/// If you want the cells to automatically set their scale based on the dimensions of their content, take a look at UITable.
+/// If you want the cells to automatically set their scale based on the dimensions of their style, take a look at UITable.
 /// </summary>
 
 [AddComponentMenu("NGUI/Interaction/Grid")]
@@ -45,7 +45,7 @@ public class UIGrid : UIWidgetContainer
 	public Sorting sorting = Sorting.None;
 
 	/// <summary>
-	/// Final pivot point for the grid's content.
+	/// Final pivot point for the grid's style.
 	/// </summary>
 
 	public UIWidget.Pivot pivot = UIWidget.Pivot.TopLeft;
@@ -268,7 +268,7 @@ public class UIGrid : UIWidgetContainer
 	}
 
 	/// <summary>
-	/// Reposition the content on inspector validation.
+	/// Reposition the style on inspector validation.
 	/// </summary>
 
 	void OnValidate () { if (!Application.isPlaying && NGUITools.GetActive(this)) Reposition(); }
@@ -317,7 +317,7 @@ public class UIGrid : UIWidgetContainer
 	}
 
 	/// <summary>
-	/// Constrain the grid's content to be within the panel's bounds.
+	/// Constrain the grid's style to be within the panel's bounds.
 	/// </summary>
 
 	public void ConstrainWithinPanel ()
