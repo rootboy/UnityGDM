@@ -8,16 +8,15 @@ using GDM.UI;
 /// <summary>
 /// The reason of using Interface is extensible. 
 /// </summary>
-public interface IFTEBuddy 
+public interface IFTEComponent 
 {
-    void OnFTETrigger(IFTEBuddy buddy, GameObject go,  string param);
+    void OnFTEProcess();
+    void OnFTEClear();
+    string instanceName { get; set; }
 }
 
 /// <summary>
 /// FTE(First Teching Experience) Manager, known as Beginner's guide.
-/// Two Keys of FTE Design:
-/// 1.FTE appearing time.
-/// 2.FTE desired action.
 /// </summary>
 public sealed class FTE : Singleton<FTE> 
 {
@@ -42,7 +41,8 @@ public sealed class FTE : Singleton<FTE>
         public FTEStep[] steps; 
     }
 
-    private Dictionary<int, FTEInfo> mDicFTE = new Dictionary<int, FTEInfo>();
+    private Dictionary<string, IFTEComponent> mDicMembers = new Dictionary<string, IFTEComponent>();
+
     private int mFTEId;
     private FTEInfo mCurrentFTE;
     private FTEStep mCurrentStep;
@@ -55,91 +55,29 @@ public sealed class FTE : Singleton<FTE>
         //TODO: parse config and initialize mDicFTE
     }
 
-    /// <summary>
-    /// Trigger the FTE by specific action to increase the FTEStep.
-    /// </summary>
-    public void Trigger(IFTEBuddy buddy, GameObject go, string param, string action)
+    public void Register(IFTEComponent component)
     {
-        if(go.name == mCurrentStep.targetName && param == mCurrentStep.targetParam
-            && action == mCurrentStep.targetAction)
-        {
-            NextStep();
-        }           
-    }
-    
-    /// <summary>
-    /// Trigger tht FTE to startup.
-    /// </summary>
-    public void Trigger(FTEType type)
-    {
-        OnGuideStart();
+        string name = component.instanceName;
+
     }
 
-    /// <summary>
-    /// This function is called when FTE event is triggered.
-    /// </summary>
-    private void OnGuideStart()
+    private void Startup()
     {
-        isRunning = true;
-        mCurrentFTE = mDicFTE[mFTEId];
-        mCurrentStep = mCurrentFTE.steps[mCurrentFTE.stepIndex];
+
     }
 
-    /// <summary>
-    /// This funciton is called when FTE ends. 
-    /// </summary>
-    private void OnGuideEnd()
+    private void Pause()
     {
-        isRunning = false;
-        StopAllCoroutines();
+
     }
 
-    /// <summary>
-    /// Do the next step guide.
-    /// </summary>
-    private void NextStep()
+    private void Resume()
     {
-        if (++mCurrentFTE.stepIndex >= mCurrentFTE.steps.Length)
-        {
-            OnGuideEnd();
-            return;
-        }
-        mCurrentStep = mCurrentFTE.steps[mCurrentFTE.stepIndex];
-        StartCoroutine("WaitForTarget");
+
     }
 
-    /// <summary>
-    /// Do the previous step guide.
-    /// </summary>
-    private void PreviousStep()
+    private void Finish()
     {
-        if (--mCurrentFTE.stepIndex < 0)
-            return;
 
-        mCurrentStep = mCurrentFTE.steps[mCurrentFTE.stepIndex];
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    private void Hide()
-    {
-    }
-
-
-    private void Display()
-    {
-        int style = mCurrentStep.style;
-        switch(style)
-        {
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            default:
-                break;
-        }
     }
 }
