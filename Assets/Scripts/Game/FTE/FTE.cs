@@ -42,42 +42,85 @@ public sealed class FTE : Singleton<FTE>
     }
 
     private Dictionary<string, IFTEComponent> mDicMembers = new Dictionary<string, IFTEComponent>();
+    private List<IFTEComponent> mFTEQueue = new List<IFTEComponent>();
+    private int mCurrenStep = -1;
+    private int mNextStep;
+    private bool isPause = false;
+    private bool isStart = false;
 
-    private int mFTEId;
-    private FTEInfo mCurrentFTE;
-    private FTEStep mCurrentStep;
-    private bool isNeedMask;
-    private bool isRunning;
-    private GameObject uiGuide;
-
+ 
     void Awake()
     {
         //TODO: parse config and initialize mDicFTE
     }
 
-    public void Register(IFTEComponent component)
+    public void Register(IFTEComponent instance)
     {
-        string name = component.instanceName;
+        string name = instance.instanceName;
+        if(mDicMembers.ContainsKey(name))
+        {
+            return;
+        }
+
+        mDicMembers[name] = instance;
+        if(isStart)
+        {
+
+        
+        }
+
 
     }
 
     private void Startup()
     {
-
-    }
-
-    private void Pause()
-    {
-
-    }
-
-    private void Resume()
-    {
-
+        if(!isStart)
+        {
+            isStart = true;
+        }
     }
 
     private void Finish()
     {
+        if(isStart)
+        {
+            isStart = false;
+            mCurrenStep = -1;
+            mFTEQueue.Clear();
+        }
+    }
 
+    private void Pause()
+    {
+        if(!isPause)
+        {
+            isPause = true;
+        }
+    }
+
+    private void Resume()
+    {
+        if(isPause)
+        {
+            isPause = false;
+            mFTEQueue[mNextStep].OnFTEProcess();
+            mCurrenStep = mNextStep;
+        }
+    }
+
+    public void NextStep()
+    {
+        if(mNextStep < mFTEQueue.Count && mFTEQueue[mNextStep] != null)
+        {
+            mFTEQueue[mNextStep].OnFTEProcess();
+            mCurrenStep = mNextStep;
+        }
+        else
+        {
+            if(mNextStep == mFTEQueue.Count)
+            {
+                Finish();
+            }
+        }
     }
 }

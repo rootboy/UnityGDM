@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <Type id ="1">
+    <Step sequence = "1" instanceName ="Window1" child ="Button_Open" param =""/>
+    <Step sequence = "2" instanceName ="Window2" child ="Button_ClickMe" param =""/>
+    <Step sequence = "3" instanceName ="Window2" child ="Button_Close" param =""/>
+  </Type>
+</root>
