@@ -1,223 +1,331 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <LandPanel3D pos="(0.0, 0.0, 285.0)">
-    <PanelDown pos="(0.0, -568.7, 0.0)">
-      <Button_More pos="(265.0, 40.0, 0.0)">
-        <Label widget_depth="4" />
-        <Sprite pos="(1.5, 5.0, 0.0)" sprite_h="69" widget_depth="2" />
-        <Sprite_ widget_depth="1" />
-      </Button_More>
-      <Button_Guild pos="(157.0, 40.0, 0.0)">
+  <LandPanel3D-P pos="(0.0, 0.0, 0.0)">
+    <PanelDown>
+      <Button_More pos="(282.7, 39.3, 0.0)">
         <Label />
-        <Sprite pos="(4.8, 5.0, 0.0)" />
+        <Sprite />
+        <Sprite_ />
+      </Button_More>
+      <Button_Guild pos="(170.8, 39.3, 0.0)">
+        <Label />
+        <Sprite />
         <Sprite_ />
       </Button_Guild>
-      <Button_Item pos="(50.0, 40.0, 0.0)">
+      <Button_Item pos="(63.9, 39.3, 0.0)">
         <Label />
-        <Sprite pos="(4.9, 5.0, 0.0)" />
+        <Sprite />
         <Sprite_ />
       </Button_Item>
-      <Button_Mail pos="(-53.0, 40.0, 0.0)">
-        <Label pos="(4.6, -28.0, 0.0)" />
-        <Sprite pos="(1.6, 5.0, 0.0)" sprite_w="79" />
+      <Button_Mail pos="(-46.6, 39.3, 0.0)">
+        <Label />
+        <Sprite />
         <Sprite_ />
       </Button_Mail>
-      <Button_Sever pos="(-159.0, 40.0, 0.0)">
+      <Button_Sever pos="(-156.6, 39.3, 0.0)">
         <Label />
-        <Sprite pos="(6.0, 5.0, 0.0)" />
+        <Sprite />
         <Sprite_ />
       </Button_Sever>
-      <Button_Task pos="(11.7, 197.9, 0.0)">
+      <Button_Task pos="(11.7, 187.0, 0.0)" rot="(0.0, 10.2, 4.6)">
         <Label />
       </Button_Task>
-      <BG pos="(0.0, 35.6, 0.0)" sprite_w="640" sprite_h="80" widget_depth="1">
-        <Sprite pos="(0.0, -19.8, 0.0)" sprite_w="640" sprite_h="27" widget_depth="2" />
+      <BG sprite_width="640">
+        <Sprite sprite_width="640" />
       </BG>
-      <Coordinate pos="(121.0, 168.7, 0.0)">
+      <Coordinate pos="(65.4, 167.1, 0.0)">
         <Label_Coordinate />
       </Coordinate>
-      <Button_Talk pos="(231.7, -9.6, 0.0)" sprite_w="536" widget_depth="0">
-        <Label pos="(-376.0, 100.6, 0.0)" />
-        <Label_ pos="(-376.4, 125.1, 0.0)" />
-        <Label__ pos="(-237.2, 124.0, 0.0)" />
-        <Talk_A pos="(-424.1, 164.5, 0.0)">
+      <Menu pos="(-276.8, 96.7, 0.0)" rot="(0.0, 0.0, 357.0)">
+        <Sprite_4 />
+        <Sprite_3 />
+        <Sprite_2 />
+        <Sprite_1 />
+        <Sprite_5 />
+        <Mask>
+          <Sprite rot="(0.0, 0.0, 356.5)" />
+          <Sprite_ />
+        </Mask>
+      </Menu>
+      <Button_Talk pos="(231.1, 71.3, 0.0)" sprite_width="444" sprite_height="68">
+        <Label pos="(-362.3, 46.9, 0.0)" />
+        <Label_ pos="(-365.0, 17.2, 0.0)" />
+        <Label__ pos="(-223.4, 46.8, 0.0)" />
+        <Talk_A pos="(-408.3, 80.9, 0.0)">
           <Label />
         </Talk_A>
-        <Talk_W pos="(-337.1, 164.5, 0.0)">
+        <Talk_W pos="(-321.1, 80.9, 0.0)">
           <Label />
         </Talk_W>
-        <Sprite pos="(-388.0, 179.0, 0.0)" sprite_w="296" widget_depth="-1" />
-        <Sprite_ pos="(-328.8, 90.8, 0.0)" widget_depth="-1" />
+        <Sprite pos="(-236.4, 95.8, 0.0)" />
+        <Sprite_ pos="(-231.0, 38.0, 0.0)" rot="(0.0, 0.0, 1.0)" sprite_width="444" sprite_height="68" />
       </Button_Talk>
-      <Sprite pos="(-270.0, 82.6, 0.0)" rot="(0.0, 310.0, 357.0)" widget_depth="4">
-        <Sprite_1 widget_depth="5" />
-      </Sprite>
-      <Sprite_ pos="(-280.0, 38.9, 0.0)" rot="(0.0, 318.0, 0.0)" widget_depth="2">
-        <Sprite_1 widget_depth="3" />
-      </Sprite_>
-      <Sprite__ pos="(-280.0, 139.3, 0.0)" rot="(0.0, 318.0, 0.0)">
-        <Sprite_1 />
-      </Sprite__>
-      <Button_Arrow pos="(275.0, 142.4, 0.0)" rot="(10.0, 42.0, 0.0)" sprite_h="90" widget_depth="12">
-        <Sprite pos="(0.0, -48.1, 0.0)" rot="(0.0, 300.0, 0.0)" widget_depth="15" />
-        <Label_Arrow pos="(0.1, -52.3, 0.0)" rot="(350.0, 300.0, 0.0)" />
+      <Button_Arrow pos="(275.3, 138.1, 0.0)">
+        <Sprite />
+        <Label_Arrow />
         <Sprite_Arrow>
           <Sprite />
         </Sprite_Arrow>
       </Button_Arrow>
     </PanelDown>
-    <PanelUP pos="(0.0, 568.7, 0.0)">
+    <PanelUP>
       <PanelWorld>
-        <Button_BookMark pos="(148.0, -30.0, 0.0)" widget_depth="1">
+        <Button_BookMark pos="(139.6, -34.3, 0.0)">
           <Sprite />
         </Button_BookMark>
-        <Button_Search pos="(-154.0, -30.0, 0.0)" widget_depth="1">
+        <Button_Search pos="(-145.5, -33.4, 0.0)">
           <Sprite />
         </Button_Search>
-        <Toggle pos="(-3.0, -33.1, 0.0)">
+        <Toggle pos="(-0.8, -30.7, 0.0)">
           <Sprite />
           <Button_ON>
             <Label_On />
-            <Sprite_On />
+            <Sprite_On depth="6" />
           </Button_ON>
           <Button_OFF>
             <Label_OFF />
             <Sprite_OFF />
           </Button_OFF>
         </Toggle>
-        <Button_RMB pos="(348.7, -112.3, 0.0)" widget_depth="1">
-          <Label_RMB pos="(-72.5, 26.1, 0.0)" widget_depth="4" />
-          <Sprite pos="(-68.3, 52.0, 0.0)" widget_depth="3" />
+        <Button_RMB pos="(321.2, -108.7, 0.0)">
+          <Label_RMB pos="(-67.0, 26.0, 0.0)" rot="(0.0, 1.0, 353.0)" />
+          <Sprite pos="(-62.0, 52.0, 0.0)" rot="(0.0, 0.0, 0.0)" />
         </Button_RMB>
         <Sprite />
-        <Sprite_ pos="(162.8, -15.1, 0.0)" />
-        <Sprit_BG pos="(0.0, 0.0, 0.0)" sprite_w="650" sprite_h="68">
-          <Food pos="(-227.4, -16.0, 0.0)" sca="(0.3, 0.3, 1.0)" />
-          <wood pos="(-130.9, -16.0, 0.0)" sca="(0.3, 0.3, 1.0)" />
-          <Stone pos="(-31.4, -16.0, 0.0)" sca="(0.3, 0.3, 1.0)" />
-          <Gold pos="(72.1, -16.0, 0.0)" sca="(0.3, 0.3, 1.0)" />
-          <Ore pos="(175.8, -16.0, 0.0)" sca="(0.3, 0.3, 1.0)" />
-          <Label_Food pos="(-180.4, -14.8, 0.0)" sca="(1.0, 1.0, 1.0)" />
-          <Label_Wood pos="(-84.0, -16.0, 0.0)" sca="(1.0, 1.0, 1.0)" />
-          <Label_Granit pos="(21.3, -16.0, 0.0)" sca="(1.0, 1.0, 1.0)" />
-          <Label_Ore pos="(226.8, -16.0, 0.0)" sca="(1.0, 1.0, 1.0)" />
-          <Label_Gold pos="(123.7, -16.0, 0.0)" sca="(1.0, 1.0, 1.0)" />
-          <Sprite pos="(0.0, -63.0, 0.0)" sca="(1.0, 1.0, 1.0)" sprite_w="690" widget_depth="0" />
+        <Sprite_ />
+        <Sprit_BG sprite_width="640" sprite_height="60">
+          <Food />
+          <wood />
+          <Stone />
+          <Gold />
+          <Ore />
+          <Label_Food />
+          <Label_Wood />
+          <Label_Granit />
+          <Label_Ore />
+          <Label_Gold />
+          <Sprite pos="(3.0, 33.0, 0.0)" sca="(1.0, 1.0, 1.0)" sprite_width="640" sprite_height="92" />
         </Sprit_BG>
+        <Button_HUDControl pos="(-324.7, -99.8, 0.0)">
+          <Sprite_HUDToggle />
+        </Button_HUDControl>
       </PanelWorld>
-      <Button_HUDControl pos="(-354.4, -103.3, 0.0)" widget_depth="1">
-        <Sprite_HUDToggle pos="(71.4, 34.8, 0.0)" widget_depth="3" />
-      </Button_HUDControl>
     </PanelUP>
-  </LandPanel3D>
-  <LandPanel3DHS pos="(0.0, 0.0, 0.0)">
-    <PanelDown pos="(0.0, -404.2, 0.0)">
-      <Button_More pos="(546.2, 39.3, 0.0)">
-        <Label widget_depth="5" />
-        <Sprite pos="(1.0, 5.0, 0.0)" sprite_h="74" widget_depth="4" />
-        <Sprite_ widget_depth="3" />
-      </Button_More>
-      <Button_Guild pos="(418.2, 39.3, 0.0)">
+    <LeftPanel pos="(-165.3, 187.4, 0.0)">
+      <Button_Other>
+        <Sprite />
+        <QueueScrollView>
+          <Grid />
+        </QueueScrollView>
+        <Sprite_ />
+      </Button_Other>
+      <Button_Growth>
+        <Sprite />
+        <QueueScrollView>
+          <Grid />
+        </QueueScrollView>
+        <Sprite_ />
+      </Button_Growth>
+      <Button_March>
+        <Sprite />
+        <QueueScrollView>
+          <Grid />
+        </QueueScrollView>
+        <Sprite_ />
+      </Button_March>
+    </LeftPanel>
+    <Button_KingdomWar>
+      <Label_WarTime />
+    </Button_KingdomWar>
+    <AttackScreen>
+      <Smork1 />
+      <Smork1_ />
+      <Smork2Pos>
+        <Smork2 />
+      </Smork2Pos>
+      <Smork2Pos_>
+        <Smork2 />
+      </Smork2Pos_>
+      <Smork2Pos__>
+        <Smork2 />
+      </Smork2Pos__>
+      <Smork2Pos___>
+        <Smork2 />
+      </Smork2Pos___>
+      <Fire />
+      <Fire_ />
+      <Fire__ />
+      <efBG />
+      <efBG_ />
+      <Smork1__ />
+      <Smork1___ />
+      <Smork3 />
+      <efBG__ />
+      <efBG___ />
+    </AttackScreen>
+  </LandPanel3D-P>
+  <LandPanel3D-L pos="(0.0, 0.0, -429.0)">
+    <PanelDown>
+      <Button_More pos="(416.8, 39.3, 0.0)">
         <Label />
-        <Sprite pos="(5.0, 5.0, 0.0)" />
+        <Sprite />
+        <Sprite_ />
+      </Button_More>
+      <Button_Guild pos="(313.4, 39.3, 0.0)">
+        <Label />
+        <Sprite />
         <Sprite_ />
       </Button_Guild>
-      <Button_Item pos="(290.2, 39.3, 0.0)">
+      <Button_Item pos="(217.6, 39.3, 0.0)">
         <Label />
-        <Sprite pos="(5.0, 5.0, 0.0)" />
+        <Sprite />
         <Sprite_ />
       </Button_Item>
-      <Button_Mail pos="(164.2, 39.3, 0.0)">
-        <Label pos="(5.0, -28.0, 0.0)" />
-        <Sprite pos="(2.0, 5.0, 0.0)" sprite_w="88" />
+      <Button_Mail pos="(120.8, 39.3, 0.0)">
+        <Label />
+        <Sprite />
         <Sprite_ />
       </Button_Mail>
-      <Button_Sever pos="(38.2, 39.3, 0.0)">
+      <Button_Sever pos="(16.0, 39.3, 0.0)">
         <Label />
-        <Sprite pos="(6.0, 5.0, 0.0)" />
+        <Sprite />
         <Sprite_ />
       </Button_Sever>
-      <Button_Task pos="(11.7, 98.9, 0.0)">
+      <Button_Task pos="(11.7, 98.9, 0.0)" rot="(12.5, 10.2, 4.6)">
         <Label />
       </Button_Task>
-      <BG pos="(725.1, 1.2, 0.0)" sprite_w="1416" sprite_h="70" widget_depth="-1">
-        <Sprite pos="(-569.4, 35.9, 0.0)" sprite_w="1136" sprite_h="55" widget_depth="0" />
+      <BG sprite_width="1136">
+        <Sprite sprite_width="1136" />
       </BG>
-      <Coordinate pos="(516.5, 100.8, 0.0)">
+      <Coordinate pos="(372.9, 100.8, 0.0)">
         <Label_Coordinate />
       </Coordinate>
-      <Button_Talk pos="(-22.0, -79.0, 0.0)" sprite_w="636" widget_depth="3">
-        <Label pos="(-474.9, 91.3, 0.0)" />
-        <Label_ pos="(-474.1, 121.4, 0.0)" />
-        <Label__ pos="(-331.6, 121.4, 0.0)" />
-        <Talk_A pos="(-505.3, 160.9, 0.0)">
+      <Menu pos="(-527.4, 96.7, 0.0)" rot="(0.0, 0.0, 357.0)">
+        <Sprite_4 />
+        <Sprite_3 />
+        <Sprite_2 />
+        <Sprite_1 />
+        <Sprite_5 />
+        <Mask>
+          <Sprite rot="(0.0, 0.0, 0.0)" />
+          <Sprite_ />
+        </Mask>
+      </Menu>
+      <Button_Talk pos="(-44.5, -79.0, 0.0)" sprite_width="506" sprite_height="149">
+        <Label pos="(-362.3, 94.3, 0.0)" />
+        <Label_ pos="(-355.8, 121.4, 0.0)" />
+        <Label__ pos="(-223.4, 121.4, 0.0)" />
+        <Talk_A pos="(-363.3, 160.9, 0.0)">
           <Label />
         </Talk_A>
-        <Talk_W pos="(-403.1, 162.6, 0.0)">
+        <Talk_W pos="(-255.3, 162.6, 0.0)">
           <Label />
         </Talk_W>
-        <Sprite pos="(-506.0, 178.0, 0.0)" sprite_w="410" widget_depth="1" />
-        <Sprite_ pos="(-328.8, 90.8, 0.0)" widget_depth="2" />
+        <Sprite pos="(-164.5, 177.8, 0.0)" />
+        <Sprite_ pos="(-328.8, 90.8, 0.0)" rot="(0.0, 0.0, 1.3)" sprite_width="640" sprite_height="121" />
       </Button_Talk>
-      <Sprite pos="(-639.0, 82.6, 0.0)" rot="(0.0, 340.0, 0.0)" widget_depth="6">
-        <Sprite_1 widget_depth="7" />
-      </Sprite>
-      <Sprite_ pos="(-644.9, 38.9, 0.0)" rot="(0.0, 340.0, 0.0)" widget_depth="4">
-        <Sprite_1 widget_depth="5" />
-      </Sprite_>
-      <Sprite__ pos="(-644.9, 139.3, 0.0)" rot="(0.0, 340.0, 0.0)">
-        <Sprite_1 />
-      </Sprite__>
-      <Button_Arrow pos="(669.3, 65.7, 0.0)" rot="(0.0, 0.0, 0.0)" sprite_h="100" widget_depth="1">
-        <Sprite pos="(-1.0, -48.0, 0.0)" rot="(0.0, 0.0, 0.0)" widget_depth="2" />
-        <Label_Arrow pos="(0.6, -52.3, 0.0)" rot="(0.0, 0.0, 0.0)" />
+      <Button_Arrow pos="(522.0, 65.7, 0.0)">
+        <Sprite />
+        <Label_Arrow />
         <Sprite_Arrow>
           <Sprite />
         </Sprite_Arrow>
       </Button_Arrow>
     </PanelDown>
-    <PanelUP pos="(0.0, 404.2, 0.0)">
+    <PanelUP>
       <PanelWorld>
-        <Button_BookMark pos="(513.4, 1.5, 0.0)" widget_depth="3">
+        <Button_BookMark pos="(424.6, 1.5, 0.0)">
           <Sprite />
         </Button_BookMark>
-        <Button_Search pos="(394.2, 0.3, 0.0)" widget_depth="3">
+        <Button_Search pos="(351.6, 0.3, 0.0)">
           <Sprite />
         </Button_Search>
-        <Toggle pos="(-446.0, 2.3, 0.0)">
+        <Toggle pos="(-388.1, 2.3, 0.0)">
           <Sprite />
           <Button_ON>
             <Label_On />
-            <Sprite_On />
+            <Sprite_On depth="3" />
           </Button_ON>
           <Button_OFF>
             <Label_OFF />
             <Sprite_OFF />
           </Button_OFF>
         </Toggle>
-        <Button_RMB pos="(730.9, -78.0, 0.0)" widget_depth="5">
-          <Label_RMB pos="(-64.3, 26.1, 0.0)" widget_depth="7" />
-          <Sprite pos="(-58.9, 52.0, 0.0)" widget_depth="6" />
+        <Button_RMB pos="(595.2, -78.0, 0.0)">
+          <Label_RMB pos="(-64.3, 26.1, 0.0)" rot="(0.0, 0.0, 352.4)" />
+          <Sprite pos="(-58.9, 52.0, 0.0)" rot="(0.0, 358.0, 0.0)" />
         </Button_RMB>
         <Sprite />
-        <Sprite_ pos="(162.8, -15.1, 0.0)" />
-        <Sprit_BG pos="(9.0, 0.0, 0.0)" sprite_w="1460" sprite_h="30">
-          <Food pos="(-229.4, -13.3, 0.0)" sca="(0.3, 0.3, 1.0)" />
-          <wood pos="(-133.5, -13.3, 0.0)" sca="(0.3, 0.3, 1.0)" />
-          <Stone pos="(-38.5, -13.3, 0.0)" sca="(0.3, 0.3, 1.0)" />
-          <Gold pos="(57.9, -13.3, 0.0)" sca="(0.3, 0.3, 1.0)" />
-          <Ore pos="(153.5, -13.3, 0.0)" sca="(0.3, 0.3, 1.0)" />
-          <Label_Food pos="(-184.8, -13.3, 0.0)" sca="(1.0, 1.0, 1.0)" />
-          <Label_Wood pos="(-88.4, -13.3, 0.0)" sca="(1.0, 1.0, 1.0)" />
-          <Label_Granit pos="(5.9, -13.3, 0.0)" sca="(1.0, 1.0, 1.0)" />
-          <Label_Ore pos="(199.1, -13.3, 0.0)" sca="(1.0, 1.0, 1.0)" />
-          <Label_Gold pos="(102.9, -13.3, 0.0)" sca="(1.0, 1.0, 1.0)" />
-          <Sprite pos="(3.4, -12.7, 0.0)" sca="(1.0, 1.0, 1.0)" sprite_w="1500" widget_depth="1" />
+        <Sprite_ />
+        <Sprit_BG sprite_width="1136" sprite_height="30">
+          <Food />
+          <wood />
+          <Stone />
+          <Gold />
+          <Ore />
+          <Label_Food />
+          <Label_Wood />
+          <Label_Granit />
+          <Label_Ore />
+          <Label_Gold />
+          <Sprite pos="(3.0, 1.0, 0.0)" sca="(1.0, 1.0, 1.0)" sprite_width="1136" sprite_height="27" />
         </Sprit_BG>
+        <Button_HUDControl pos="(-597.0, -68.7, 0.0)">
+          <Sprite_HUDToggle />
+        </Button_HUDControl>
       </PanelWorld>
-      <Button_HUDControl pos="(-726.5, -68.7, 0.0)" widget_depth="5">
-        <Sprite_HUDToggle pos="(65.4, 40.6, 0.0)" widget_depth="6" />
-      </Button_HUDControl>
     </PanelUP>
-  </LandPanel3DHS>
+    <LeftPanel pos="(-165.3, 187.4, 0.0)">
+      <Button_Other>
+        <Sprite />
+        <QueueScrollView>
+          <Grid />
+        </QueueScrollView>
+        <Sprite_ />
+      </Button_Other>
+      <Button_Growth>
+        <Sprite />
+        <QueueScrollView>
+          <Grid />
+        </QueueScrollView>
+        <Sprite_ />
+      </Button_Growth>
+      <Button_March>
+        <Sprite />
+        <QueueScrollView>
+          <Grid />
+        </QueueScrollView>
+        <Sprite_ />
+      </Button_March>
+    </LeftPanel>
+    <Button_KingdomWar>
+      <Label_WarTime />
+    </Button_KingdomWar>
+    <AttackScreen>
+      <Smork1 />
+      <Smork1_ />
+      <Smork2Pos>
+        <Smork2 />
+      </Smork2Pos>
+      <Smork2Pos_>
+        <Smork2 />
+      </Smork2Pos_>
+      <Smork2Pos__>
+        <Smork2 />
+      </Smork2Pos__>
+      <Smork2Pos___>
+        <Smork2 />
+      </Smork2Pos___>
+      <Fire />
+      <Fire_ />
+      <Fire__ />
+      <efBG />
+      <efBG_ />
+      <Smork1__ />
+      <Smork1___ />
+      <Smork3 />
+      <efBG__ />
+      <efBG___ />
+    </AttackScreen>
+  </LandPanel3D-L>
 </root>

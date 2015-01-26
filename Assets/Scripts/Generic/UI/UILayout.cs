@@ -54,10 +54,25 @@ namespace GDM
             TweenUtil.EasingFunction ease;
             TweenUtil.EaseType easeType = TweenUtil.EaseType.linear;
 
+            public float manualFOV = 60;
+            public int manualWidth = 640;
+            public int manualHeight = 1136;
+
             void Awake()
             {
                 xmlDoc.Load(Application.streamingAssetsPath + "/" + "UIConfig.xml");
                 ease = TweenUtil.GetEasingFunction(easeType);
+            }
+
+            void Start()
+            {
+                float initAspectRatio = (float)manualWidth / (float)manualHeight;
+                float initVertFOVInRads = manualFOV * Mathf.Deg2Rad;
+                float hFOVInRads = 2f * Mathf.Atan(Mathf.Tan(initVertFOVInRads / 2f) * initAspectRatio);
+
+                float aspectRatio = (float)Screen.width / (float)Screen.height;
+                float vFOVInRads = 2f * Mathf.Atan(Mathf.Tan(hFOVInRads / 2f) / aspectRatio);
+                camera.fieldOfView = vFOVInRads * Mathf.Rad2Deg;
             }
 
             void Update()
@@ -129,7 +144,7 @@ namespace GDM
                 List<GameObject> list = UIManager.Instance.GetAllVisibleUI();
                 foreach(GameObject item in list)
                 {
-                    XmlNode node = xmlDoc.DocumentElement.SelectSingleNode(item.name + "_Portrait");
+                    XmlNode node = xmlDoc.DocumentElement.SelectSingleNode(item.name + "-P");
                     GetUIConfig(node, string.Empty);
                     AdjustUI(item.transform);
                 }
@@ -140,7 +155,7 @@ namespace GDM
                 List<GameObject> list = UIManager.Instance.GetAllVisibleUI();
                 foreach (GameObject item in list)
                 {
-                    XmlNode node = xmlDoc.DocumentElement.SelectSingleNode(item.name + "_Landscape");
+                    XmlNode node = xmlDoc.DocumentElement.SelectSingleNode(item.name + "-L");
                     GetUIConfig(node, string.Empty);
                     AdjustUI(item.transform);
                 }
@@ -182,11 +197,10 @@ namespace GDM
 
                     attr = (XmlAttribute)item.attrColl.GetNamedItem("widget_depth");
                     if (attr != null) partsParamList.Add(new UIPartsParam(t.GetComponent<UISprite>(), "widget_depth", int.Parse(attr.Value)));
-
-                    layout = true;
- 
                     //Add code here...
                 }
+
+                layout = true;
             }
         }
     }
