@@ -5,4 +5,14 @@
     <Step sequence = "2" instanceName ="Window2" child ="Button_ClickMe" param =""/>
     <Step sequence = "3" instanceName ="Window2" child ="Button_Close" param =""/>
   </Type>
+  
+  <Type id ="2">
+    <Step sequence = "1" instanceName ="Window1" child ="Button_Open" param =""/>
+    <Step sequence = "2" instanceName ="Window2" child ="Button_ClickMe" param =""/>
+  </Type>
+
+  <Type id ="3">
+    <Step sequence = "1" instanceName ="Window1" child ="Button_Open" param =""/>
+    <Step sequence = "2" instanceName ="Window2" child ="Button_ClickMe" param =""/>
+  </Type>
 </root>

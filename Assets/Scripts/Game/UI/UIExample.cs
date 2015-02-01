@@ -3,7 +3,7 @@ using System.Collections;
 using GDM.UI;
 
 
-public class UIExample : UIBase
+public class UIExample : UIBase, IGuideComponent
 {
 
     protected override void OnAwake()
@@ -39,5 +39,22 @@ public class UIExample : UIBase
     protected override void RegisterEvent()
     {
         base.RegisterEvent();
+    }
+
+
+    public void OnGuideProcess()
+    {
+
+    }
+
+    public void OnGuideClear()
+    {
+
+    }
+
+    public string instanceName
+    {
+        get;
+        set;
     }
 }
