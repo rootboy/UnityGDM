@@ -3,7 +3,7 @@ using System.Collections;
 using GDM.UI;
 
 
-public class UIExample : UIBase, IGuideComponent
+public class UIExample : UIBase, IFTEComponent
 {
 
     protected override void OnAwake()
@@ -42,12 +42,12 @@ public class UIExample : UIBase, IGuideComponent
     }
 
 
-    public void OnGuideProcess()
+    public void OnFTEProcess()
     {
 
     }
 
-    public void OnGuideClear()
+    public void OnFTEClear()
     {
 
     }

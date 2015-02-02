@@ -6,37 +6,38 @@ using GDM.Global;
 using GDM.UI;
 
 
-/// <summary>
-/// The reason of using Interface is extensible. 
-/// </summary>
-public interface IGuideComponent 
+public interface IFTEComponent 
 {
-    void OnGuideProcess();
-    void OnGuideClear();
+    void OnFTEProcess();
+    void OnFTEClear();
     string instanceName { get; set; }
 }
+
 
 /// <summary>
 /// Guide Manager, known as Beginner's guide.
 /// </summary>
-public sealed class GuideManager : Singleton<GuideManager> 
+public sealed class FTE : Singleton<FTE> 
 {
     /// <summary>
-    /// 新手引导的触发的类型.
+    /// 新手引导的触发类型.
     /// </summary>
-    public enum GuideType
+    public enum FTEType
     {
         OnGameStart,
         OnTaskGet,
         OnFuncOpen,
     }
 
-    private Dictionary<string, IGuideComponent> mDicMembers = new Dictionary<string, IGuideComponent>();
+    /// <summary>
+    /// IFTEComponent注册表.
+    /// </summary>
+    private Dictionary<string, IFTEComponent> mDicMembers = new Dictionary<string, IFTEComponent>();
     
     /// <summary>
     /// 当前新手引导队列.
     /// </summary>
-    private List<IGuideComponent> mGuideQueue = new List<IGuideComponent>();
+    private List<IFTEComponent> mGuideQueue = new List<IFTEComponent>();
    
     /// <summary>
     /// 当前引导步.
@@ -58,21 +59,20 @@ public sealed class GuideManager : Singleton<GuideManager>
     /// </summary>
     private bool isStart = false;
 
-    private XmlDocument xmlDoc = new XmlDocument();
 
     void Start()
     {
-        //TODO:Parse config
+        //TODO: Parse config file.
     }
 
     public void Trigger(int id)
     {
-        //TODO: Init mGuideQueue
-        mGuideQueue = new List<IGuideComponent>();
+        //TODO: init mGuideQueue
+        mGuideQueue = new List<IFTEComponent>();
         Startup(); 
     }
 
-    public void Register(IGuideComponent instance)
+    public void Register(IFTEComponent instance)
     {
         if(instance != null)
         {
@@ -103,7 +103,7 @@ public sealed class GuideManager : Singleton<GuideManager>
     }
 
     /// <summary>
-    /// Pause the GuideManager.
+    /// Pause the FTE.
     /// </summary>
     private void Pause()
     {
@@ -114,14 +114,14 @@ public sealed class GuideManager : Singleton<GuideManager>
     }
 
     /// <summary>
-    /// Resume the GuideManager.
+    /// Resume the FTE.
     /// </summary>
     private void Resume()
     {
         if(isPause)
         {
             isPause = false;
-            mGuideQueue[mNextStep].OnGuideProcess();
+            mGuideQueue[mNextStep].OnFTEProcess();
             mCurrenStep = mNextStep;
         }
     }
@@ -149,12 +149,12 @@ public sealed class GuideManager : Singleton<GuideManager>
 
         if(mNextStep < mGuideQueue.Count)
         {
-            IGuideComponent component = mGuideQueue[mNextStep];
+            IFTEComponent component = mGuideQueue[mNextStep];
             if (component == null){
                 Pause();
                 return;
             }
-            component.OnGuideProcess();
+            component.OnFTEProcess();
             mCurrenStep = mNextStep;
         }
         else

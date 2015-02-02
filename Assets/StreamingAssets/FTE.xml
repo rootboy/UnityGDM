@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <Type id ="1">
+  <Type id ="1" param="">
     <Step sequence = "1" instanceName ="Window1" child ="Button_Open" param =""/>
     <Step sequence = "2" instanceName ="Window2" child ="Button_ClickMe" param =""/>
     <Step sequence = "3" instanceName ="Window2" child ="Button_Close" param =""/>
   </Type>
   
-  <Type id ="2">
+  <Type id ="2" param="">
     <Step sequence = "1" instanceName ="Window1" child ="Button_Open" param =""/>
     <Step sequence = "2" instanceName ="Window2" child ="Button_ClickMe" param =""/>
   </Type>
 
-  <Type id ="3">
+  <Type id ="3" param="">
     <Step sequence = "1" instanceName ="Window1" child ="Button_Open" param =""/>
     <Step sequence = "2" instanceName ="Window2" child ="Button_ClickMe" param =""/>
   </Type>
