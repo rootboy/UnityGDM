@@ -23,7 +23,7 @@ public class FingerGestures : MonoBehaviour
         RuntimePlatform.IPhonePlayer,
         RuntimePlatform.Android,
 #if !UNITY_3_5
-        RuntimePlatform.BB10Player,
+        RuntimePlatform.BlackBerryPlayer,
         RuntimePlatform.WP8Player,
 #endif
     };

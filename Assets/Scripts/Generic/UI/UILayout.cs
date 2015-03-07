@@ -72,7 +72,7 @@ namespace GDM
 
                 float aspectRatio = (float)Screen.width / (float)Screen.height;
                 float vFOVInRads = 2f * Mathf.Atan(Mathf.Tan(hFOVInRads / 2f) / aspectRatio);
-                camera.fieldOfView = vFOVInRads * Mathf.Rad2Deg;
+                GetComponent<Camera>().fieldOfView = vFOVInRads * Mathf.Rad2Deg;
             }
 
             void Update()
@@ -118,15 +118,15 @@ namespace GDM
                     }
                     if (item.key == "sprite_size_width")
                     {
-                        ((UISprite)item.target).width = (int)ease(((int)item.start), ((int)item.end), percentage);
+                        //((UISprite)item.target).width = (int)ease(((int)item.start), ((int)item.end), percentage);
                     }
                     if (item.key == "sprite_size_height")
                     {
-                        ((UISprite)item.target).height = (int)ease(((int)item.start), ((int)item.end), percentage);
+                        //((UISprite)item.target).height = (int)ease(((int)item.start), ((int)item.end), percentage);
                     }
                     if (item.key == "widget_depth")
                     {
-                        ((UIWidget)item.target).depth = (int)ease(((int)item.start), ((int)item.end), percentage);
+                        //((UIWidget)item.target).depth = (int)ease(((int)item.start), ((int)item.end), percentage);
                     }
                 }
             }
@@ -190,13 +190,13 @@ namespace GDM
                     if (attr != null) partsParamList.Add(new UIPartsParam(t, "sca", StringUtil.StringToVector3(attr.Value)));
 
                     attr = (XmlAttribute)item.attrColl.GetNamedItem("sprite_size_width");
-                    if (attr != null) partsParamList.Add(new UIPartsParam(t.GetComponent<UISprite>(), "sprite_size_width", int.Parse(attr.Value)));
+                    //if (attr != null) partsParamList.Add(new UIPartsParam(t.GetComponent<UISprite>(), "sprite_size_width", int.Parse(attr.Value)));
 
                     attr = (XmlAttribute)item.attrColl.GetNamedItem("sprite_size_height");
-                    if (attr != null) partsParamList.Add(new UIPartsParam(t.GetComponent<UISprite>(), "sprite_size_height", int.Parse(attr.Value)));
+                    //if (attr != null) partsParamList.Add(new UIPartsParam(t.GetComponent<UISprite>(), "sprite_size_height", int.Parse(attr.Value)));
 
                     attr = (XmlAttribute)item.attrColl.GetNamedItem("widget_depth");
-                    if (attr != null) partsParamList.Add(new UIPartsParam(t.GetComponent<UISprite>(), "widget_depth", int.Parse(attr.Value)));
+                    //if (attr != null) partsParamList.Add(new UIPartsParam(t.GetComponent<UISprite>(), "widget_depth", int.Parse(attr.Value)));
                     //Add code here...
                 }
 

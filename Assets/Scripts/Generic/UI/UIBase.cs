@@ -9,13 +9,13 @@ namespace GDM
 	{
         public abstract class UIBase : MonoBehaviour
         {
-            protected Dictionary<string, BoxCollider> dicBtns = new Dictionary<string, BoxCollider>();
-            protected Dictionary<string, UILabel> dicLabels = new Dictionary<string, UILabel>();
+            /*protected Dictionary<string, BoxCollider> dicBtns = new Dictionary<string, BoxCollider>();
+            protected Dictionary<string, > dicLabels = new Dictionary<string, UILabel>();
             protected Dictionary<string, UISprite> dicSprite = new Dictionary<string, UISprite>();
 
             protected string buttonFilter = "Button_";
             protected string labelFilter = "Label_";
-            protected string spriteFilter = "Sprite_";
+            protected string spriteFilter = "Sprite_";*/
 
             void Awake()
             {
@@ -40,10 +40,10 @@ namespace GDM
 
             protected virtual void RegisterEvent()
             {
-                foreach (KeyValuePair<string, BoxCollider> item in dicBtns)
+                /*foreach (KeyValuePair<string, BoxCollider> item in dicBtns)
                 {
                     UIEventListener.Get(item.Value.gameObject).onClick += this.OnClick;
-                }
+                }*/
             }
 
             /// <summary>
@@ -51,9 +51,9 @@ namespace GDM
             /// </summary>
             private void GetAllReference()
             {
-                GetReference<BoxCollider>(buttonFilter, dicBtns);
-                GetReference<UILabel>(labelFilter, dicLabels);
-                GetReference<UISprite>(spriteFilter, dicSprite);
+                //GetReference<BoxCollider>(buttonFilter, dicBtns);
+                //GetReference<UILabel>(labelFilter, dicLabels);
+                //GetReference<UISprite>(spriteFilter, dicSprite);
             }
 
 
