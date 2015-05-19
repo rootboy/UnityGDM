@@ -1,14 +1,7 @@
 UnityGDM
 ========
 
-Unity Game Development Model
+Unity游戏开发模型
 
-Feature:
-==========
-
-1、Resouces System : Assetbundle<br/>
-2、DLC System<br/>
-3、Various of managers<br/>
-
-
-
+目标：
+建立一套灵活的Unity框架，适应不同类的游戏类型。
